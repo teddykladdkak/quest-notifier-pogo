@@ -1,22 +1,22 @@
 //Source: https://pokemongohub.net/post/guide/field-research-missions-list/
 
 var rewards = [
-	{namn: "stardust", plats: "img/stuff/stardust.png"},
-	{namn: "candy", plats: "img/stuff/candy.png"},
-	{namn: "berry_raz", plats: "img/stuff/berry_raz.png"},
-	{namn: "berry_nan", plats: "img/stuff/berry_nan.png"},
-	{namn: "berry_pin", plats: "img/stuff/berry_pin.png"},
-	{namn: "berry_gol", plats: "img/stuff/berry_gol.png"},
-	{namn: "ball_nor", plats: "img/stuff/ball_nor.png"},
-	{namn: "ball_gr", plats: "img/stuff/ball_gr.png"},
-	{namn: "ball_ult", plats: "img/stuff/ball_ult.png"},
-	{namn: "revive_nor", plats: "img/stuff/revive_nor.png"},
-	{namn: "revive_max", plats: "img/stuff/revive_max.png"},
-	{namn: "potion_nor", plats: "img/stuff/potion_nor.png"},
-	{namn: "potion_super", plats: "img/stuff/potion_super.png"},
-	{namn: "potion_hyper", plats: "img/stuff/potion_hyper.png"},
-	{namn: "potion_max", plats: "img/stuff/potion_max.png"},
-	{namn: "pokemon", plats: "img/stuff/pokemon.png"}
+	{namn: "stardust", rubrik: "Stardust", plats: "img/stuff/stardust.png"},
+	{namn: "candy", rubrik: "Rare Candy", plats: "img/stuff/candy.png"},
+	{namn: "berry_raz", rubrik: "Razz Berry", plats: "img/stuff/berry_raz.png"},
+	{namn: "berry_nan", rubrik: "Nanab Berry", plats: "img/stuff/berry_nan.png"},
+	{namn: "berry_pin", rubrik: "Pinap Berry", plats: "img/stuff/berry_pin.png"},
+	{namn: "berry_gol", rubrik: "Golden Razz Berry", plats: "img/stuff/berry_gol.png"},
+	{namn: "ball_nor", rubrik: "Pokéball", plats: "img/stuff/ball_nor.png"},
+	{namn: "ball_gr", rubrik: "Greatball", plats: "img/stuff/ball_gr.png"},
+	{namn: "ball_ult", rubrik: "Ultraball", plats: "img/stuff/ball_ult.png"},
+	{namn: "revive_nor", rubrik: "Revive", plats: "img/stuff/revive_nor.png"},
+	{namn: "revive_max", rubrik: "Max Revive", plats: "img/stuff/revive_max.png"},
+	{namn: "potion_nor", rubrik: "Potion", plats: "img/stuff/potion_nor.png"},
+	{namn: "potion_super", rubrik: "Super Potion", plats: "img/stuff/potion_super.png"},
+	{namn: "potion_hyper", rubrik: "Hyper Potion", plats: "img/stuff/potion_hyper.png"},
+	{namn: "potion_max", rubrik: "Max Potion", plats: "img/stuff/potion_max.png"},
+	{namn: "pokemon", rubrik: "Pokémon", plats: "img/stuff/pokemon.png"}
 ];
 var quests = [{
 	"namn": "Use {?} Berries to help catch Pokémon.",

@@ -1,6 +1,7 @@
 html, body {
 	min-height: 100%;
-	padding-top: 25px;
+	margin: 0px;
+	padding: 0px;
 }
 body {
 	background-image: -webkit-linear-gradient(315deg, hsla(0, 0%, 100%, .95), rgba(174, 254, 158, .99));
@@ -9,6 +10,11 @@ body {
 body, select, input, button {
 	font-size: 30px;
 }
+#setting {
+	margin-left: 5px;
+}
+#setting .fa-toggle-off{color: #000;}
+#setting .fa-toggle-on{color: green;}
 select, input, button {
 	display: block;
 	width: 100%;
@@ -53,24 +59,28 @@ button {
 	min-width: 40px;
 	vertical-align:middle;
 }
+.meny {
+	width: 100%;
+    font-size: 1.5em;
+    padding: 0px;
+    background-color: #000;
+    color: #000;
+}
+.meny i {
+	margin: 5px;
+}
 #meny {
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	width: 100%;
-    font-size: 1.5em;
-    color: #000;
+	text-align: right;
     padding: 0px;
-    text-align: right;
-    background-color: #000;
     color: #FFF;
 }
-#meny i {
-	margin: 5px;
-}
-.fa-cog {color: lightgray;}
-.fa-plus-circle {color: lightgreen;}
-.fa-info-circle {color: lightblue;}
+.meny .fa-arrow-circle-left{color: #FFF;}
+#meny .fa-cog {color: lightgray;}
+#meny .fa-plus-circle {color: lightgreen;}
+#meny .fa-info-circle {color: lightblue;}
 #addbutton
 h1 {
 	font-family: verdana;

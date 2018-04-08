@@ -28,16 +28,23 @@
 	<script src="script/main.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="style/font-awesome/css/fontawesome-all.css">
 	<link rel="stylesheet" type="text/css" href="style/main.css">
+	<style type="text/css" id="stylesettings">/*Code for style*/</style>
 </head>
 <body onload="load();">
 	<!-- <img src="img/addbutton.png"> -->
-	<div id="meny">
+	<div id="meny" class="meny">
 		<i class="fas fa-info-circle"></i>
-		<i class="fas fa-cog"></i>
+		<i class="fas fa-cog" onclick="showsettings();"></i>
 		<i class="fas fa-plus-circle" id="addbutton" onclick="showreg();"></i>
+	</div>
+	<div class="meny">
+		<i class="fas fa-arrow-circle-left" onclick="angra();"></i>
+		<i class="fas fa-cog"></i>
+		<i class="fas fa-plus-circle"></i>
 	</div>
 	<h1>PoGo Quest Notifier Lund</h1>
 	<p>OBS! Sidan är ännu inte igång, utan visar snarare ett koncept, ännu inte kopplad till en server.</p>
+	<div id="setting" style="display: none;"></div>
 	<div id="add" style="display: none;">
 		<p>1. Välj Pokéstop</p>
 		<input type="text" onkeyup="searchstop(this, event)" onchange="searchstop(this)" id="pokestopnamn" placeholder="Pokestopets namn"><!-- list="pokestopdata" -->
@@ -65,50 +72,37 @@
 		<datalist id="pokestopdata"></datalist>
 	</div>
 	<div id="wrapper">
-		<div class="tr">
+		<div class="tr settingberry_pin" data-namn="Bunker 427" data-longitude="12.899978" data-latitude="55.572132" data-itemnamn="berry_pin" data-itemplats="img/stuff/berry_pin.png" data-questvalue="Spin 4 PokéStops." data-questantal="1" data-km="X">
 			<div class="td">
-				<p>Km</p>
-			</div>
-			<div class="td">
-				
-			</div>
-			<div class="td">
-				<p>Quest</p><p>
-			</p></div>
-		</div>
-		
-		
-		<div class="tr" data-namn="Bunker 427" data-longitude="12.899978" data-latitude="55.572132" data-itemnamn="berry_pin" data-itemplats="img/stuff/berry_pin.png" data-questvalue="Spin 4 PokéStops." data-questantal="1" data-km="X">
-			<div class="td">
-				<p class="km"><i class="fas fa-road"></i>X</p>
+				<p class="km"><i class="fas fa-road"></i> X</p>
 			</div>
 			<div class="td">
 				<img src="img/stuff/berry_pin.png">x1
 			</div>
 			<div class="td">
-				<p>Spin 4 PokéStops.<br><img src="img/pokestop.png" class="pokestop">Bunker 427</p>
+				<p><i class="fas fa-binoculars"></i> Spin 4 PokéStops.<br><i class="fas fa-map-pin"></i> Bunker 427</p>
 			</div>
 		</div>
-		<div class="tr" data-namn="Burlövs gamla kyrka " data-longitude="13.11322" data-latitude="55.636805" data-itemnamn="berry_raz" data-itemplats="img/stuff/berry_raz.png" data-questvalue="Hatch an Egg." data-questantal="3" data-km="X">
+		<div class="tr settingberry_raz" data-namn="Burlövs gamla kyrka " data-longitude="13.11322" data-latitude="55.636805" data-itemnamn="berry_raz" data-itemplats="img/stuff/berry_raz.png" data-questvalue="Hatch an Egg." data-questantal="3" data-km="X">
 			<div class="td">
-				<p class="km"><i class="fas fa-road"></i>X</p>
+				<p class="km"><i class="fas fa-road"></i> X</p>
 			</div>
 			<div class="td">
 				<img src="img/stuff/berry_raz.png">x3
 			</div>
 			<div class="td">
-				<p>Hatch an Egg.<br><img src="img/pokestop.png" class="pokestop">Burlövs gamla kyrka </p>
+				<p><i class="fas fa-binoculars"></i> Hatch an Egg.<br><i class="fas fa-map-pin"></i> Burlövs gamla kyrka </p>
 			</div>
 		</div>
-		<div class="tr" data-namn="Sibbarp" data-longitude="12.903928" data-latitude="55.572507" data-itemnamn="stardust" data-itemplats="img/stuff/stardust.png" data-questvalue="Hatch an Egg." data-questantal="400" data-km="X">
+		<div class="tr settingstardust" data-namn="Sibbarp" data-longitude="12.903928" data-latitude="55.572507" data-itemnamn="stardust" data-itemplats="img/stuff/stardust.png" data-questvalue="Hatch an Egg." data-questantal="400" data-km="X">
 			<div class="td">
-				<p class="km"><i class="fas fa-road"></i>X</p>
+				<p class="km"><i class="fas fa-road"></i> X</p>
 			</div>
 			<div class="td">
 				<img src="img/stuff/stardust.png">x400
 			</div>
 			<div class="td">
-				<p>Hatch an Egg.<br><img src="img/pokestop.png" class="pokestop">Sibbarp</p>
+				<p><i class="fas fa-binoculars"></i> Hatch an Egg.<br><i class="fas fa-map-pin"></i> Sibbarp</p>
 			</div>
 		</div>
 	</div>

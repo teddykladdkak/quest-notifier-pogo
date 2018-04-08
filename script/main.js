@@ -1,10 +1,66 @@
 function load() {
+	addsettings();
 	adddataliststop();
 	additems();
 	getLocation();
 	sortbykm();
 };
 function removechilds(parent){while (parent.hasChildNodes()) {parent.removeChild(parent.firstChild);};};
+function addsettings(){
+	var wrapper = document.getElementById('setting');
+	for (var i = rewards.length - 1; i >= 0; i--) {
+		var p = document.createElement('p');
+			var icon = document.createElement('i');
+				if(localStorage.getItem('setting' + rewards[i].namn) == 'off'){
+					icon.setAttribute('class', 'fas fa-toggle-off');
+					icon.setAttribute('data-state', 'off');
+				}else{
+					icon.setAttribute('class', 'fas fa-toggle-on');
+					icon.setAttribute('data-state', 'on');
+				};
+				icon.setAttribute('data-namn', rewards[i].namn);
+				icon.setAttribute('onclick', 'changesetting(this);');
+			p.appendChild(icon);
+			var text = document.createTextNode(' ' + rewards[i].rubrik);
+			p.appendChild(text);
+		wrapper.appendChild(p);
+	};
+	addsettingstostyle();
+};
+function changesetting(element){
+	if(element.getAttribute('data-state') == 'on'){
+		element.setAttribute('data-state', 'off');
+		element.setAttribute('class', 'fas fa-toggle-off');
+	}else if(element.getAttribute('data-state') == 'off'){
+		element.setAttribute('data-state', 'on');
+		element.setAttribute('class', 'fas fa-toggle-on');
+	}else{
+		console.log('changesetting(); kunde inte läsa vad knapp är i för stadie.');
+	};
+	addsettingstostyle();
+};
+function addsettingstostyle(){
+	var allsettingbutton = document.getElementById('setting').getElementsByTagName('i');
+	var stylecode = '';
+	for (var i = allsettingbutton.length - 1; i >= 0; i--) {
+		console.log(allsettingbutton[i].getAttribute('data-state'));
+		if(allsettingbutton[i].getAttribute('data-state') == 'off'){
+			var stylecode = stylecode + ' .setting' + allsettingbutton[i].getAttribute('data-namn');
+			localStorage.setItem('setting' + allsettingbutton[i].getAttribute('data-namn'), 'off');
+		}else{
+			localStorage.removeItem('setting' + allsettingbutton[i].getAttribute('data-namn'));
+		};
+	};
+	var stylesettings = document.getElementById('stylesettings');
+		removechilds(stylesettings);
+	if(stylecode == ''){
+		var stylecodetext = document.createTextNode('/*Code for style*/');
+	}else{
+		var stylecode = stylecode + ' {display: none!important;}';
+		var stylecodetext = document.createTextNode(stylecode);
+	};
+		stylesettings.appendChild(stylecodetext);
+};
 function adddataliststop(){
 	var wrapper = document.getElementById('pokestopdata');
 	for (var i = pokestop.length - 1; i >= 0; i--) {
@@ -165,8 +221,16 @@ function checknum(element) {
 		activate('aktivera', 'regbutton');
 	};
 };
+function showsettings(){
+	document.getElementById('meny').setAttribute('style', 'display: none;');
+	document.getElementById('setting').removeAttribute('style');
+	document.getElementById('add').setAttribute('style', 'display: none;');
+	document.getElementById('wrapper').setAttribute('style', 'display: none;');
+	document.getElementById('pokestopnamn').focus();
+}
 function showreg(){
 	document.getElementById('meny').setAttribute('style', 'display: none;');
+	document.getElementById('setting').setAttribute('style', 'display: none;');
 	document.getElementById('add').removeAttribute('style');
 	document.getElementById('wrapper').setAttribute('style', 'display: none;');
 	document.getElementById('pokestopnamn').focus();
@@ -176,6 +240,7 @@ function angra(){
 	for (var i = alltd.length - 1; i >= 0; i--) {
 		alltd[i].removeAttribute('class');
 	};
+	document.getElementById('setting').setAttribute('style', 'display: none;');
 	removechilds(document.getElementById('quests'));
 	activate('deaktivera', 'quests');
 	document.getElementById('pokestopnamn').value = '';
@@ -221,7 +286,7 @@ function getpokestopobjekt(pokestopnamn){
 function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, givenkm){
 	var wrapper = document.getElementById('wrapper');
 		var tr = document.createElement('div');
-			tr.setAttribute('class', 'tr');
+			tr.setAttribute('class', 'tr setting' + itemnamn);
 			tr.setAttribute('data-namn', pokestopobj.namn);
 			tr.setAttribute('data-longitude', pokestopobj.longitude);
 			tr.setAttribute('data-latitude', pokestopobj.latitude);
@@ -237,10 +302,10 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 						icon.setAttribute('class', 'fas fa-road');
 					kmp.appendChild(icon);
 					if(lat == 0){
-						var kmtext = document.createTextNode('X');
+						var kmtext = document.createTextNode(' X');
 						tr.setAttribute('data-km', 'X');
 					}else{
-						var kmtext = document.createTextNode((givenkm / 10));
+						var kmtext = document.createTextNode(' ' + (givenkm / 10));
 						tr.setAttribute('data-km', givenkm);
 					};
 					kmp.appendChild(kmtext);
@@ -257,14 +322,16 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 			var task = document.createElement('div');
 				task.setAttribute('class', 'td');
 				var taskp = document.createElement('p');
-					var tasktext = document.createTextNode(questvalue);
+					var taskicon = document.createElement('i');
+						taskicon.setAttribute('class', 'fas fa-binoculars');
+					taskp.appendChild(taskicon);
+					var tasktext = document.createTextNode(' ' + questvalue);
 					taskp.appendChild(tasktext);
 					taskp.appendChild(document.createElement('br'));
-					var pokestopimg = document.createElement('img');
-						pokestopimg.setAttribute('src', 'img/pokestop.png');
-						pokestopimg.setAttribute('class', 'pokestop');
+					var pokestopimg = document.createElement('i');
+						pokestopimg.setAttribute('class', 'fas fa-map-pin');
 					taskp.appendChild(pokestopimg);
-					var pokestopnamn = document.createTextNode(pokestopobj.namn);
+					var pokestopnamn = document.createTextNode(' ' + pokestopobj.namn);
 					taskp.appendChild(pokestopnamn);
 				task.appendChild(taskp);
 			tr.appendChild(task);
@@ -280,10 +347,8 @@ function sortbykm(){
 		var data = [];
 		var num = [];
 		for (var i = alllines.length - 1; i >= 0; i--) {
-			if(i == 0){}else{
-				num.push(pad(alllines[i].getAttribute('data-km'), 10) + '|||' + alllines[i].getAttribute('data-namn'));
-				data.push({"km": pad(alllines[i].getAttribute('data-km'), 10), "namn": alllines[i].getAttribute('data-namn'), "longitude": alllines[i].getAttribute('data-longitude'), "latitude": alllines[i].getAttribute('data-latitude'), "itemnamn": alllines[i].getAttribute('data-itemnamn'), "itemplats": alllines[i].getAttribute('data-itemplats'), "questvalue": alllines[i].getAttribute('data-questvalue'), "questantal": alllines[i].getAttribute('data-questantal')})
-			};
+			num.push(pad(alllines[i].getAttribute('data-km'), 10) + '|||' + alllines[i].getAttribute('data-namn'));
+			data.push({"km": pad(alllines[i].getAttribute('data-km'), 10), "namn": alllines[i].getAttribute('data-namn'), "longitude": alllines[i].getAttribute('data-longitude'), "latitude": alllines[i].getAttribute('data-latitude'), "itemnamn": alllines[i].getAttribute('data-itemnamn'), "itemplats": alllines[i].getAttribute('data-itemplats'), "questvalue": alllines[i].getAttribute('data-questvalue'), "questantal": alllines[i].getAttribute('data-questantal')})	
 		};
 		num.sort();
 		var nyordning = [];
@@ -295,39 +360,11 @@ function sortbykm(){
 			};
 		};
 		removechilds(document.getElementById('wrapper'));
-		addhead();
 		for (var i = nyordning.length - 1; i >= 0; i--) {
 			addexample({"namn": nyordning[i].namn, "latitude": nyordning[i].latitude, "longitude": nyordning[i].longitude}, nyordning[i].itemnamn, nyordning[i].itemplats, nyordning[i].questvalue, nyordning[i].questantal, nyordning[i].km);
 		};
 	};
 };
-
-
-function addhead(){
-	var wrapper = document.getElementById('wrapper');
-		var tr = document.createElement('div');
-			tr.setAttribute('class', 'tr');
-			var km = document.createElement('div');
-				km.setAttribute('class', 'td');
-				var kmp = document.createElement('p');
-					var kmtext = document.createTextNode('Km');
-					kmp.appendChild(kmtext);
-				km.appendChild(kmp);
-			tr.appendChild(km);
-			var imgwrp = document.createElement('div');
-				imgwrp.setAttribute('class', 'td');
-			tr.appendChild(imgwrp);
-			var task = document.createElement('div');
-				task.setAttribute('class', 'td');
-				var taskp = document.createElement('p');
-					var tasktext = document.createTextNode('Quest');
-					taskp.appendChild(tasktext);
-				task.appendChild(taskp);
-			tr.appendChild(task);
-		wrapper.appendChild(tr);
-};
-
-
 
 var lon = '0';
 var lat = '0';
@@ -347,18 +384,16 @@ function showPosition(position) {
 function uppdateDistance(){
 	var allines = document.getElementById('wrapper').getElementsByClassName('tr');
 	for (var i = allines.length - 1; i >= 0; i--) {
-		if(i == 0){}else{
-			var km = Math.round(getDistanceFromLatLonInKm(allines[i].getAttribute('data-latitude'),allines[i].getAttribute('data-longitude')) * 10);
-			if(lat == 0){}else{
-				allines[i].setAttribute('data-km', km);
-				var text = allines[i].getElementsByClassName('km')[0];
-					removechilds(text);
-					var icon = document.createElement('i');
-						icon.setAttribute('class', 'fas fa-road');
-					text.appendChild(icon);
-					var nytext = document.createTextNode((km / 10));
-					text.appendChild(nytext);
-			};
+		var km = Math.round(getDistanceFromLatLonInKm(allines[i].getAttribute('data-latitude'),allines[i].getAttribute('data-longitude')) * 10);
+		if(lat == 0){}else{
+			allines[i].setAttribute('data-km', km);
+			var text = allines[i].getElementsByClassName('km')[0];
+				removechilds(text);
+				var icon = document.createElement('i');
+					icon.setAttribute('class', 'fas fa-road');
+				text.appendChild(icon);
+				var nytext = document.createTextNode((km / 10));
+				text.appendChild(nytext);
 		};
 	};
 	sortbykm();
