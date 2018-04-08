@@ -2,6 +2,7 @@ html, body {
 	min-height: 100%;
 	margin: 0px;
 	padding: 0px;
+	margin-top: 55px;
 }
 body {
 	background-image: -webkit-linear-gradient(315deg, hsla(0, 0%, 100%, .95), rgba(174, 254, 158, .99));
@@ -59,33 +60,43 @@ button {
 	min-width: 40px;
 	vertical-align:middle;
 }
-.meny {
+#meny {
+	position: fixed;
+	top: 0px;
+	left: 0px;
 	width: 100%;
     font-size: 1.5em;
     padding: 0px;
     background-color: #000;
     color: #000;
-}
-.meny i {
-	margin: 5px;
-}
-#meny {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	text-align: right;
     padding: 0px;
-    color: #FFF;
 }
-.meny .fa-arrow-circle-left{color: #FFF;}
-#meny .fa-cog {color: lightgray;}
-#meny .fa-plus-circle {color: lightgreen;}
-#meny .fa-info-circle {color: lightblue;}
-#addbutton
+#meny i {margin: 5px;}
+	#meny.menyright {text-align: right;}
+	#meny.menyright .fa-arrow-circle-left {color: black;}
+	#meny.menyright .fa-question-circle {color: yellow;}
+	#meny.menyright .fa-info-circle {color: #00c0ff;}
+	#meny.menyright .fa-cog {color: lightgray;}
+	#meny.menyright .fa-plus-circle {color: lightgreen;}
+	#meny.menyleft {text-align: left;}
+	#meny.menyleft .fa-arrow-circle-left {color: white;}
+	#meny.menyleft .fa-info-circle,
+	#meny.menyleft .fa-question-circle,
+	#meny.menyleft .fa-cog,
+	#meny.menyleft .fa-plus-circle {color: black;}
 h1 {
 	font-family: verdana;
 	font-size: 1.5em;
 	text-align: center;
+	margin-top: 0px;
+	padding-top: 0px;
+}
+#information h3 {
+	font-family: verdana;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+#information p {
 	margin-top: 0px;
 	padding-top: 0px;
 }

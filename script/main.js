@@ -43,7 +43,6 @@ function addsettingstostyle(){
 	var allsettingbutton = document.getElementById('setting').getElementsByTagName('i');
 	var stylecode = '';
 	for (var i = allsettingbutton.length - 1; i >= 0; i--) {
-		console.log(allsettingbutton[i].getAttribute('data-state'));
 		if(allsettingbutton[i].getAttribute('data-state') == 'off'){
 			var stylecode = stylecode + ' .setting' + allsettingbutton[i].getAttribute('data-namn');
 			localStorage.setItem('setting' + allsettingbutton[i].getAttribute('data-namn'), 'off');
@@ -221,38 +220,42 @@ function checknum(element) {
 		activate('aktivera', 'regbutton');
 	};
 };
-function showsettings(){
-	document.getElementById('meny').setAttribute('style', 'display: none;');
-	document.getElementById('setting').removeAttribute('style');
+function hideall(){
+	document.getElementById('meny').setAttribute('class', 'menyleft');
+	document.getElementById('setting').setAttribute('style', 'display: none;');
 	document.getElementById('add').setAttribute('style', 'display: none;');
 	document.getElementById('wrapper').setAttribute('style', 'display: none;');
-	document.getElementById('pokestopnamn').focus();
-}
+	document.getElementById('information').setAttribute('style', 'display: none;');
+};
+function showinfo(){
+	hideall();
+	document.getElementById('information').removeAttribute('style');
+};
+function showsettings(){
+	hideall();
+	document.getElementById('setting').removeAttribute('style');
+};
 function showreg(){
-	document.getElementById('meny').setAttribute('style', 'display: none;');
-	document.getElementById('setting').setAttribute('style', 'display: none;');
+	hideall();
 	document.getElementById('add').removeAttribute('style');
-	document.getElementById('wrapper').setAttribute('style', 'display: none;');
 	document.getElementById('pokestopnamn').focus();
 };
 function angra(){
+	hideall();
+	document.getElementById('meny').setAttribute('class', 'menyright');
 	var alltd = document.getElementById('items').getElementsByTagName('img');
 	for (var i = alltd.length - 1; i >= 0; i--) {
 		alltd[i].removeAttribute('class');
 	};
-	document.getElementById('setting').setAttribute('style', 'display: none;');
 	removechilds(document.getElementById('quests'));
 	activate('deaktivera', 'quests');
 	document.getElementById('pokestopnamn').value = '';
 	document.getElementById('num').value = '';
 	activate('deaktivera', 'num');
 	activate('deaktivera', 'regbutton');
-	document.getElementById('meny').removeAttribute('style');
-	document.getElementById('add').setAttribute('style', 'display: none;');
 	document.getElementById('wrapper').removeAttribute('style');
 };
 function registrera(){
-	//Kontrollera att allt stämmer!
 	var pokestop = document.getElementById('pokestopnamn').value;
 	var item = document.getElementsByClassName('blue')[0];
 	var itemnamn = item.getAttribute('data-namn');

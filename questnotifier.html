@@ -31,23 +31,32 @@
 	<style type="text/css" id="stylesettings">/*Code for style*/</style>
 </head>
 <body onload="load();">
-	<!-- <img src="img/addbutton.png"> -->
-	<div id="meny" class="meny">
-		<i class="fas fa-info-circle"></i>
+	<div id="meny" class="menyright">
+		<i class="fas fa-arrow-circle-left" onclick="angra();"></i>
+		<i class="fas fa-question-circle"></i>
+		<i class="fas fa-info-circle" onclick="showinfo();"></i>
 		<i class="fas fa-cog" onclick="showsettings();"></i>
 		<i class="fas fa-plus-circle" id="addbutton" onclick="showreg();"></i>
 	</div>
-	<div class="meny">
-		<i class="fas fa-arrow-circle-left" onclick="angra();"></i>
-		<i class="fas fa-cog"></i>
-		<i class="fas fa-plus-circle"></i>
-	</div>
 	<h1>PoGo Quest Notifier Lund</h1>
 	<p>OBS! Sidan är ännu inte igång, utan visar snarare ett koncept, ännu inte kopplad till en server.</p>
+	<div id="information" style="display: none">
+		<h3>Vad är detta?</h3>
+		<p>Detta är ett projekt som bygger på communityt som spelar Pokémon Go. För att detta ska fungera, kräver det att alla användare engagerar sig och registrerar vilka quest de får från Pokéstop. Tillsammans kan vi hjälpas åt att hitta de quest som vi personligen behöver och som genererar bäst belöningar!</p>
+		<h3>Under huven</h3>
+		<p>Denna sida bygger inte på något "Spoofande" och använder sig enbart av inskickad användar information.</p>
+		<p>Pokéstopnamn och lokalisation är tagna från <a href="https://www.pokemongomap.info">pokemongomap.info</a> som är en sida där personer kan registrera Gym och Stop.</p>
+		<h3>Bra att veta</h3>
+		<p>Databasen innehåller i nuläget ca 400 st Pokéstop, risken finns att just det pokestop du ska registrera inte hittas. Antingen är den inte tillaggd på <a href="https://www.pokemongomap.info">pokemongomap.info</a> eller så har jag missat den. Hittar du ett Pokéstop som fattas kan du nå mig via de större Pokémon Go grupperna på Facebook (Mattias Lidbeck).</p>
+		<p>Sidan är öppen för vem som helst att lägga till Quester, vilket även öppnar upp risken för att någon skulle få för sig att "Trolla" eller på annat sätt förstöra upplevelsen för oss andra, dock är det ett aktivt val i projektet att inte implementera inloggning eller liknande. Vi får se ifall detta kommer att bli ett framtida problem.</p>
+		<h3>Mål i projektet</h3>
+		<p>Det ska vara så enkellt som möjligt att göra registreringar.</p>
+		<p>Projektet ska jobba för öppen data och så småning om kommer data erbjudas i så många format det går (js, json, jsonp, lines m.m.), så att externa utvecklare ska kunna använda sig av informationen.</p>
+	</div>
 	<div id="setting" style="display: none;"></div>
 	<div id="add" style="display: none;">
 		<p>1. Välj Pokéstop</p>
-		<input type="text" onkeyup="searchstop(this, event)" onchange="searchstop(this)" id="pokestopnamn" placeholder="Pokestopets namn"><!-- list="pokestopdata" -->
+		<input type="text" onkeyup="searchstop(this, event)" onchange="searchstop(this)" id="pokestopnamn" placeholder="Pokestopets namn">
 		<table class="popupalt">
 			<tbody id="alternativ"></tbody>
 		</table>
@@ -62,7 +71,7 @@
 		<table id="buttons">
 			<tr>
 				<td>
-					<button onclick="angra();">Ångra</button><!-- <input type="button" value="Ångra" onclick="angra();"> -->
+					<button onclick="angra();">Ångra</button>
 				</td>
 				<td>
 					<button disabled="disabled" id="regbutton" onclick="registrera();">Registrera</button>
