@@ -86,6 +86,7 @@ if (fs.existsSync(config.savedata)) {
 	};
 }else{
 	skrivtillspara('tom');
+	var savedata = {"datum": getDate().datum, "data": []};
 };
 
 var timetosave = 'false';
@@ -117,7 +118,7 @@ io.sockets.on('connection', function (socket, username) {
 			savedata.data.push(data);
 		}else{
 			skrivtillspara('tom');
-			savedata = {"datum": getDate().datum, "data": [data]};
+			var savedata = {"datum": getDate().datum, "data": []};
 		};
 		socket.broadcast.emit('data', savedata.data);
 	});
