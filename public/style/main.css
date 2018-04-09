@@ -114,3 +114,15 @@ h1 {
 .popupalt td {border: solid 2px #000;}
 .popupalt tr:nth-child(even) {background: #CCC}
 .popupalt tr:nth-child(odd) {background: #FFF}
+#footer {
+	font-size:10px!important;
+	text-align: center;
+	padding-top: 40px;
+}
+#footer a {
+	color:#000;
+}
+#footer a:hover {
+	color: #E87600;
+	text-decoration: overline underline;
+}
