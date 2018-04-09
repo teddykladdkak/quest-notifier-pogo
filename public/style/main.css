@@ -2,13 +2,16 @@ html, body {
 	min-height: 100%;
 	margin: 0px;
 	padding: 0px;
-	margin-top: 55px;
+	padding-top: 47px;
 }
 body {
 	background-image: -webkit-linear-gradient(315deg, hsla(0, 0%, 100%, .95), rgba(174, 254, 158, .99));
 	background-image: linear-gradient(135deg, hsla(0, 0%, 100%, .95), rgba(174, 254, 158, .99));
 }
-body, select, input, button {
+body {
+	font-size: 25px;
+}
+select, input, button {
 	font-size: 30px;
 }
 #setting {
@@ -75,7 +78,6 @@ button {
 	background-color: red;
 	color: white;
 	z-index: 20;
-	font-size: 1em;
 }
 #meny i {margin: 5px;}
 	#meny.menyright {text-align: right;}
