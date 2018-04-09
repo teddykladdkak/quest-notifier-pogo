@@ -423,6 +423,25 @@ var pokestop = [ //Source: https://www.pokemongomap.info/
 	{"namn": "Treklotsplatsen", "latitude": 55.751892, "longitude": 13.188161},
 	{"namn": "Söderlyckan Skateboardpark", "latitude": 55.69605, "longitude": 13.187028},
 	{"namn": "Let's Dance", "latitude": 55.702665, "longitude": 13.197752},
-	{"namn": "Playground Gazebo", "latitude": 55.707536, "longitude": 13.211044}
-	/*{"namn": "", "latitude": 55.656074, "longitude": 13.109515},*/
+	{"namn": "Playground Gazebo", "latitude": 55.707536, "longitude": 13.211044},
+	{"namn": "Hela Halvcirkeln", "latitude": 55.519867, "longitude": 13.22515599999997},
+	{"namn": "Erlandsdals Lekpark", "latitude": 55.519639, "longitude": 13.226423999999952},
+	{"namn": "Välkommen till Svedala", "latitude": 55.51657999999999, "longitude": 13.228937999999971},
+	{"namn": "Cementary Structure", "latitude": 55.514271, "longitude": 13.221130000000016},
+	{"namn": "Sinnesrolunden", "latitude": 55.51381599999999, "longitude": 13.222024000000033},
+	{"namn": "Sittande flicka", "latitude": 55.511779, "longitude": 13.21898699999997},
+	{"namn": "Familjegrupp", "latitude": 55.511444, "longitude": 13.21910200000002},
+	{"namn": "Dammlyckans Lekplats", "latitude": 55.510981, "longitude": 13.226177000000007},
+	{"namn": "Svedalagårdens Idrottsplats", "latitude": 55.513859, "longitude": 13.22986800000001},
+	{"namn": "Sporthall", "latitude": 55.513649, "longitude": 13.23191399999996},
+	{"namn": "Marbäcks Lekplats", "latitude": 55.512395, "longitude": 13.246257000000014},
+	{"namn": "Svedala Stadspark", "latitude": 55.511367, "longitude": 13.240256999999929},
+	{"namn": "Floraparken", "latitude": 55.510374, "longitude": 13.235953999999992},
+	{"namn": "Svedala bibliotek", "latitude": 55.50960499999999, "longitude": 13.238165999999978},
+	{"namn": "Svedala Folketshus", "latitude": 55.508552, "longitude": 13.240197999999964},
+	{"namn": "Badflickan", "latitude": 55.507739, "longitude": 13.24180899999999},
+	{"namn": "Hjulrullaren", "latitude": 55.50747799999999, "longitude": 13.233747999999991},
+	{"namn": "Svedala Trainstation", "latitude": 55.50706499999999, "longitude": 13.232258999999999},
+	{"namn": "Aggarps Mölla", "latitude": 55.493584, "longitude": 13.2386500}
+	/*{"namn": "", "latitude": , "longitude": },*/
 ];

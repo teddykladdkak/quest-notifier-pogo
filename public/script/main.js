@@ -291,6 +291,7 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 			tr.setAttribute('data-itemplats', itemplats);
 			tr.setAttribute('data-questvalue', questvalue);
 			tr.setAttribute('data-questantal', questantal);
+			tr.setAttribute('onclick', 'window.open("http://maps.google.com/?q=' + pokestopobj.latitude + ',' + pokestopobj.longitude + '")');
 			var km = document.createElement('div');
 				km.setAttribute('class', 'td');
 				var kmp = document.createElement('p');
