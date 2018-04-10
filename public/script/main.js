@@ -334,6 +334,7 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 				var img = document.createElement('img');
 					img.setAttribute('src', itemplats);
 				imgwrp.appendChild(img);
+				console.log(questantal);
 				if(questantal == ''){}else{
 					var sttext = document.createTextNode('x' + questantal);
 					imgwrp.appendChild(sttext);
@@ -476,4 +477,5 @@ socket.on('data', function(data) {
 			readsave(data[i]);
 		};
 	};
+	sortbykm();
 });
