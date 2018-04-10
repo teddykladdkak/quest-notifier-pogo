@@ -5,7 +5,13 @@ function load() {
 	//sortbykm();
 };
 function hittaid(id){return document.getElementById(id);};
-function removechilds(parent){while (parent.hasChildNodes()) {parent.removeChild(parent.firstChild);};};
+function removechilds(parent){
+	if(parent.hasChildNodes()){
+		while (parent.hasChildNodes()) {
+			parent.removeChild(parent.firstChild);
+		};
+	};
+};
 function addsettings(){
 	var wrapper = hittaid('setting');
 	for (var i = rewards.length - 1; i >= 0; i--) {
@@ -328,8 +334,10 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 				var img = document.createElement('img');
 					img.setAttribute('src', itemplats);
 				imgwrp.appendChild(img);
-				var sttext = document.createTextNode('x' + questantal);
-				imgwrp.appendChild(sttext);
+				if(questantal == ''){}else{
+					var sttext = document.createTextNode('x' + questantal);
+					imgwrp.appendChild(sttext);
+				};
 			tr.appendChild(imgwrp);
 			var task = document.createElement('div');
 				task.setAttribute('class', 'td');
@@ -463,12 +471,7 @@ socket.on('data', function(data) {
 	hittaid('error').setAttribute('style', 'display: none;');
 	var wrapper = hittaid('wrapper');
 	removechilds(wrapper);
-	if(data.length == 0){
-		var p = document.createElement('p');
-			var ptext = document.createTextNode('Inga quest är registrerade ännu för dagen, blir du den första?');
-			p.appendChild(ptext);
-		wrapper.appendChild(p);
-	}else{
+	if(data.length == 0){}else{
 		for (var i = data.length - 1; i >= 0; i--) {
 			readsave(data[i]);
 		};

@@ -61,7 +61,9 @@
 	<div id="setting" style="display: none;"></div>
 	<div id="add" style="display: none;">
 		<p>1. Välj Pokéstop</p>
-		<input type="text" onkeyup="searchstop(this, event)" onchange="searchstop(this)" id="pokestopnamn" placeholder="Pokestopets namn"><i class="fas fa-crosshairs" onclick="closeststop(this);" id="closeststop"></i>
+		<div id="wrapperpokestopnamn">
+			<input type="text" onkeyup="searchstop(this, event)" onchange="searchstop(this)" id="pokestopnamn" placeholder="Pokestopets namn"><i class="fas fa-crosshairs" onclick="closeststop(this);" id="closeststop"></i>
+		</div>
 		<table class="popupalt">
 			<tbody id="alternativ"></tbody>
 		</table>
@@ -84,9 +86,7 @@
 			</tr>
 		</table>
 	</div>
-	<div id="wrapper">
-		<!-- Content -->
-	</div>
+	<div id="wrapper"></div>
 	<div id="footer">2017&nbsp;©&nbsp;Mattias Lidbeck&nbsp;¦&nbsp;{<a href="http://www.teddyprojekt.tk/" target="blank" alt="Länk till denna sida">www.teddyprojekt.tk</a>}</div>
 	<!-- https://localhost:4455/socket.io/socket.io.js -->
 	<script src="socket.io/socket.io.js"></script>
