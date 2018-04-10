@@ -72,7 +72,7 @@ function mark(element, id){
 		alltd[i].removeAttribute('class');
 	}
 	element.setAttribute('class', 'blue');
-	getquests(id);
+	activate('aktivera', 'quests');
 };
 function searchstop(element, event){
 	var alternativ = hittaid('alternativ');
@@ -129,6 +129,14 @@ function insertpokestop(namn){
 		input.value = namn;
 	searchstop(input, event)
 };
+function startoption(text){
+	var wrapper = hittaid('quests');
+		var startoption = document.createElement('option');
+			startoption.setAttribute('value', '');
+			var startoptiontext = document.createTextNode(text);
+			startoption.appendChild(startoptiontext);
+		wrapper.appendChild(startoption);
+};
 function additems(){
 	var wrapper = hittaid('items').getElementsByTagName('tbody')[0];
 		var tr = document.createElement('tr');
@@ -150,53 +158,17 @@ function additems(){
 			rader++;
 		};
 		wrapper.appendChild(tr);
-};
-function getquests(id){
-	var questarray = [];
-	var numberarray = [];
-	for (var i = quests.length - 1; i >= 0; i--) {
-		if(quests[i].reward.length == 0){}else{
-			for (var a = quests[i].reward.length - 1; a >= 0; a--) {
-				if(quests[i].reward[a].typ == id.replace('_', '.')){
-					questarray.push(quests[i]);
-					numberarray.push(quests[i].reward[a].antal);
-				};
-			};
-		};
-	};
-	addquest(numberarray, questarray);
-};
-function startoption(text){
-	var wrapper = hittaid('quests');
-		var startoption = document.createElement('option');
-			startoption.setAttribute('value', '');
-			var startoptiontext = document.createTextNode(text);
-			startoption.appendChild(startoptiontext);
-		wrapper.appendChild(startoption);
-};
-function addquest(numberarray, questarray){
-	var wrapper = hittaid('quests');
-		wrapper.setAttribute('onchange', 'addnumber(this);')
-		activate('deaktivera', 'regbutton');
-		activate('deaktivera', 'num');
-		activate('deaktivera', 'quests');
-		hittaid('num').value = '';
-		removechilds(wrapper);
-	if(questarray.length == 0){
-		startoption('Inga quest hittade');
-	}else{
-		activate('aktivera', 'quests');
+	var questwrapper = hittaid('quests');
+		questwrapper.setAttribute('onchange', 'addnumber(this);')
 		startoption('Välj quest');
-		for (var i = 0; i < questarray.length; i++){
-			var option = document.createElement('option');
-				option.setAttribute('value', questarray[i].namn);
-				option.setAttribute('data-antal', numberarray[i]);
-				option.setAttribute('data-number', questarray[i].number);
-				option.setAttribute('data-index', i);
-				var optiontext = document.createTextNode(questarray[i].namn);
-				option.appendChild(optiontext);
-			wrapper.appendChild(option);
-		};
+	for (var i = 0; i < quests.length; i++){
+		var option = document.createElement('option');
+			option.setAttribute('value', quests[i].namn);
+			option.setAttribute('data-number', quests[i].number);
+			option.setAttribute('data-index', i);
+			var optiontext = document.createTextNode(quests[i].namn);
+			option.appendChild(optiontext);
+		questwrapper.appendChild(option);
 	};
 };
 function addnumber(element){
@@ -249,7 +221,7 @@ function angra(){
 		alltd[i].removeAttribute('class');
 	};
 	removechilds(hittaid('alternativ'));
-	removechilds(hittaid('quests'));
+	hittaid('quests').selectedIndex = 0;
 	activate('deaktivera', 'quests');
 	hittaid('pokestopnamn').value = '';
 	hittaid('num').value = '';
@@ -268,7 +240,6 @@ function registrera(){
 		if(!quests[i].selected){}else{
 			var questomnummer = quests[i].getAttribute('data-number');
 			var questvalue = quests[i].getAttribute('value');
-			var questantal = quests[i].getAttribute('data-antal');
 		};
 	};
 	var questindex = getindexquest(questvalue);
@@ -281,7 +252,7 @@ function registrera(){
 	var pokestopobj = getpokestopobjekt(pokestopval);
 	if(pokestopval == ''){return false};
 	if(!pokestopobj){return false};
-	addexample(pokestopobj.obj, itemnamn, itemplats, questvalue, questantal, '');
+	addexample(pokestopobj.obj, itemnamn, itemplats, questvalue, 0, '');
 	socket.emit('registrera', {"p": pokestopobj.index, "i": parseInt(itemindex), "q": questindex, "v": nummer});
 	uppdateDistance();
 	angra();
@@ -310,7 +281,6 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 			tr.setAttribute('data-itemnamn', itemnamn);
 			tr.setAttribute('data-itemplats', itemplats);
 			tr.setAttribute('data-questvalue', questvalue);
-			tr.setAttribute('data-questantal', questantal);
 			tr.setAttribute('onclick', 'window.open("http://maps.google.com/?q=' + pokestopobj.latitude + ',' + pokestopobj.longitude + '")');
 			var km = document.createElement('div');
 				km.setAttribute('class', 'td');
@@ -334,11 +304,6 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 				var img = document.createElement('img');
 					img.setAttribute('src', itemplats);
 				imgwrp.appendChild(img);
-				console.log(questantal);
-				if(questantal == ''){}else{
-					var sttext = document.createTextNode('x' + questantal);
-					imgwrp.appendChild(sttext);
-				};
 			tr.appendChild(imgwrp);
 			var task = document.createElement('div');
 				task.setAttribute('class', 'td');
@@ -369,7 +334,7 @@ function sortbykm(){
 		var num = [];
 		for (var i = alllines.length - 1; i >= 0; i--) {
 			num.push(pad(alllines[i].getAttribute('data-km'), 10) + '|||' + alllines[i].getAttribute('data-namn'));
-			data.push({"km": pad(alllines[i].getAttribute('data-km'), 10), "namn": alllines[i].getAttribute('data-namn'), "longitude": alllines[i].getAttribute('data-longitude'), "latitude": alllines[i].getAttribute('data-latitude'), "itemnamn": alllines[i].getAttribute('data-itemnamn'), "itemplats": alllines[i].getAttribute('data-itemplats'), "questvalue": alllines[i].getAttribute('data-questvalue'), "questantal": alllines[i].getAttribute('data-questantal')})	
+			data.push({"km": pad(alllines[i].getAttribute('data-km'), 10), "namn": alllines[i].getAttribute('data-namn'), "longitude": alllines[i].getAttribute('data-longitude'), "latitude": alllines[i].getAttribute('data-latitude'), "itemnamn": alllines[i].getAttribute('data-itemnamn'), "itemplats": alllines[i].getAttribute('data-itemplats'), "questvalue": alllines[i].getAttribute('data-questvalue'), "questantal": 0})	
 		};
 		num.sort();
 		var nyordning = [];
@@ -382,7 +347,7 @@ function sortbykm(){
 		};
 		removechilds(hittaid('wrapper'));
 		for (var i = nyordning.length - 1; i >= 0; i--) {
-			addexample({"namn": nyordning[i].namn, "latitude": nyordning[i].latitude, "longitude": nyordning[i].longitude}, nyordning[i].itemnamn, nyordning[i].itemplats, nyordning[i].questvalue, nyordning[i].questantal, nyordning[i].km);
+			addexample({"namn": nyordning[i].namn, "latitude": nyordning[i].latitude, "longitude": nyordning[i].longitude}, nyordning[i].itemnamn, nyordning[i].itemplats, nyordning[i].questvalue, 0, nyordning[i].km);
 		};
 	};
 };
@@ -442,13 +407,6 @@ function readsave(data){
 	var itemnamn = rewards[data.i].namn;
 	var itemplats = rewards[data.i].plats;
 	var questvalue = quests[data.q].namn;
-	var quest = quests[data.q].reward;
-	var questantal = '';
-	for (var i = 0; i < quest.length; i++){
-		if(quest[i].typ.replace('.', '_') == itemnamn){
-			var questantal = quest[i].antal;
-		};
-	};
 	if(data.v == 0){}else{
 		var questvalue = questvalue.replace('{?}', data.v);
 	};
@@ -457,7 +415,7 @@ function readsave(data){
 	}else{
 		var givenkm = Math.round(getDistanceFromLatLonInKm(pokestopobj.latitude,pokestopobj.longitude) * 10);
 	};
-	addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, givenkm);
+	addexample(pokestopobj, itemnamn, itemplats, questvalue, 0, givenkm);
 };
 
 var geturl = window.location.href.replace('http://', '').replace('https://', '').split('/')[0];
