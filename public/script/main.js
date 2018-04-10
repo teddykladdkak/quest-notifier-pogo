@@ -47,10 +47,10 @@ function changesetting(element){
 };
 function addsettingstostyle(){
 	var allsettingbutton = hittaid('setting').getElementsByTagName('i');
-	var stylecode = '';
+	var stylecode = [];
 	for (var i = allsettingbutton.length - 1; i >= 0; i--) {
 		if(allsettingbutton[i].getAttribute('data-state') == 'off'){
-			var stylecode = stylecode + ' .setting' + allsettingbutton[i].getAttribute('data-namn');
+			stylecode.push('.setting' + allsettingbutton[i].getAttribute('data-namn'));
 			localStorage.setItem('setting' + allsettingbutton[i].getAttribute('data-namn'), 'off');
 		}else{
 			localStorage.removeItem('setting' + allsettingbutton[i].getAttribute('data-namn'));
@@ -58,11 +58,10 @@ function addsettingstostyle(){
 	};
 	var stylesettings = hittaid('stylesettings');
 		removechilds(stylesettings);
-	if(stylecode == ''){
+	if(stylecode.length == 0){
 		var stylecodetext = document.createTextNode('/*Code for style*/');
 	}else{
-		var stylecode = stylecode + ' {display: none!important;}';
-		var stylecodetext = document.createTextNode(stylecode);
+		var stylecodetext = document.createTextNode(stylecode.join(', ') + ' {display: none!important;}');
 	};
 		stylesettings.appendChild(stylecodetext);
 };
