@@ -89,8 +89,21 @@ function searchstop(element, event){
 		};
 	}else if(resultat.length == 0){
 		element.setAttribute('style', 'color: red;');
+	}else if(element.value == ''){
+
 	}else{
 		addalternativ(alternativ, resultat);
+	};
+};
+function closeststop(element){
+	if(lat == 0){}else{
+		var resultat = [];
+		for (var i = pokestop.length - 1; i >= 0; i--) {
+			var distance = Math.round(getDistanceFromLatLonInKm(pokestop[i].latitude,pokestop[i].longitude) * 10000);
+			resultat.push(pad(distance, 15) + '|||' + pokestop[i].namn);
+		};
+		resultat.sort();
+		hittaid('pokestopnamn').value = resultat[0].split('|||')[1];
 	};
 };
 function addalternativ(wrapper, data){
@@ -229,6 +242,7 @@ function angra(){
 	for (var i = alltd.length - 1; i >= 0; i--) {
 		alltd[i].removeAttribute('class');
 	};
+	removechilds(hittaid('alternativ'));
 	removechilds(hittaid('quests'));
 	activate('deaktivera', 'quests');
 	hittaid('pokestopnamn').value = '';
@@ -376,6 +390,7 @@ function getLocation() {
 function showPosition(position) {
 	window['lat'] = position.coords.latitude;
 	window['lon'] = position.coords.longitude;
+	hittaid('closeststop').setAttribute('style', 'display: inline-block;')
 	uppdateDistance();
 };
 function uppdateDistance(){

@@ -20,9 +20,8 @@ select, input, button {
 #setting .fa-toggle-off{color: #000;}
 #setting .fa-toggle-on{color: green;}
 select, input, button {
-	display: block;
-	width: 100%;
-	max-width: 100%;
+	width: 90%;
+	max-width: 90%;
 }
 button {
 	margin-top: 10px;
@@ -127,4 +126,14 @@ h1 {
 #footer a:hover {
 	color: #E87600;
 	text-decoration: overline underline;
+}
+
+.fa-crosshairs {
+	position: relative;
+	z-index: 9;
+	left: -30px;
+	top: -2px;
+	color: #000;
+	display: none;
+	cursor: pointer;
 }

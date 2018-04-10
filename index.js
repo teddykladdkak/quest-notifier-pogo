@@ -15,7 +15,7 @@ var config = {
 	"public": __dirname + '/public',
 	"savedata": __dirname + '/savedata.json',
 	"port": 4455,
-	"savemin": 20
+	"chechdaymin": 20
 };
 
 
@@ -77,30 +77,35 @@ function loadpage(filePath, extname, response, contentType){
 
 
 //Läser sparfil och tömmer info om det är ny dag eller skapar ny fil om den inte finns.
-function skrivtillspara(innehall){if(innehall == 'tom'){var innehall = {"datum": getDate().datum, "data": []};};fs.writeFileSync(config.savedata, JSON.stringify(innehall, null, ' '));var savedata = innehall;};
-var savedata = '';
-if (fs.existsSync(config.savedata)) {
-	var savedata = JSON.parse(fs.readFileSync(config.savedata, 'utf8'));
-	if(savedata.datum == getDate().datum){}else{
-		skrivtillspara('tom');
+function skrivtillspara(innehall){
+	if(innehall == 'tom'){
+		var innehall = {"datum": getDate().datum, "data": []};
 	};
-}else{
-	skrivtillspara('tom');
-	var savedata = {"datum": getDate().datum, "data": []};
+	fs.writeFileSync(config.savedata, JSON.stringify(innehall, null, ' '));
 };
 
-var timetosave = 'false';
-var savevar = setInterval(saveloop, ((config.savemin * 1000) * 60));
-function saveloop() {
-	if(getDate().datum == savedata.datum){
-		if(timetosave == 'true'){
-			timetosave = 'false';
-			skrivtillspara(savedata);
-			console.log('Ny info finns, sparad!');
-		}else{
-			console.log('Ingen ny info finns, sparar inte..');
+
+
+
+function checkifsavefileexist(){
+	if (fs.existsSync(config.savedata)) {
+		var savedata = JSON.parse(fs.readFileSync(config.savedata, 'utf8'));
+		if(savedata.datum == getDate().datum){}else{
+			skrivtillspara('tom');
 		};
 	}else{
+		skrivtillspara('tom');
+	};
+};
+checkifsavefileexist();
+
+
+
+
+setInterval(dayloop, ((config.chechdaymin * 1000) * 60));
+function dayloop() {
+	var savedata = JSON.parse(fs.readFileSync(config.savedata, 'utf8'));
+	if(getDate().datum == savedata.datum){}else{
 		skrivtillspara('tom');
 		console.log('Ny dag = tom fil :S');
 	};
@@ -110,17 +115,19 @@ function saveloop() {
 // Loading socket.io
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket, username) {
-	socket.emit('data', savedata.data);
+	var tosend = JSON.parse(fs.readFileSync(config.savedata, 'utf8'));
+	socket.emit('data', tosend.data);
 	
 	socket.on('registrera', function (data) {
-		if(getDate().datum == savedata.datum){
-			timetosave = 'true';
-			savedata.data.push(data);
+		var olddata = JSON.parse(fs.readFileSync(config.savedata, 'utf8'));
+		if(getDate().datum == olddata.datum){
+			olddata.data.push(data);
+			skrivtillspara(olddata);
 		}else{
 			skrivtillspara('tom');
-			var savedata = {"datum": getDate().datum, "data": []};
+			var olddata = {"datum": getDate().datum, "data": []};
 		};
-		socket.broadcast.emit('data', savedata.data);
+		socket.broadcast.emit('data', olddata.data);
 	});
 });
 	
