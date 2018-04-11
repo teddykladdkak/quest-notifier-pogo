@@ -42,21 +42,40 @@
 	<h1>PoGoQuest - Lund</h1>
 	<div id="questions" style="display: none">
 		<h3>Ikonbeskrivning</h3>
+			<p><i class="fas fa-arrow-circle-left"></i> = Tillbaka</p>
+			<p><i class="fas fa-question-circle"></i> = Denna sidan</p>
+			<p><i class="fas fa-info-circle"></i> = Information om projektet</p>
+			<p><i class="fas fa-cog"></i> = Inställningar</p>
+			<p><i class="fas fa-plus-circle"></i> = Registrera en quest</p>
+			<p><i class="fas fa-crosshairs"></i> = Hittar närmaste pokestop utifrån GPS</p>
 		<h3>Inställningar</h3>
+			<p>Möjlighet att välja vilka quest som ska visas eller döljas, för att lättare hitta de quest man är ute efter.</p>
+			<p>Plan är att här ska man så småning om kunna begränsa städer m.m. i nuläget finns Lund och Staffanstorp.</p>
 		<h3>Registrera</h3>
+			<p>För att kunna registrera en quest du fått från ett pokestop behöver du veta: 1. Namn på Pokéstop, 2. Item man får när quest är avklarat, 3. Vad det är för Quest, 4. Ev. antal gånger questet måste göras.</p>
+		<h3>Vanliga frågor</h3>
+			<p>Varför är sidan tom? - Mellan klockan 00:00-00-20 var dag rensas servern, eftersom quest i Pokémon GO ändras vart dygn enligt nuvarande fältstudier som genomförts.</p>
+			<p>Varför finns inte alla Pokéstop med Quests listade? - Sidan bygger på att användarna (t.ex. du) registrerar quest du får från Pokéstop.</p>
+			<p>Vad händer med min GPS information? - Ingenting utanför din telefon, GPS infon används enbart för att sortera listan, så du får Pokéstop som är närmast dig, högst upp.</p>
+			<p>Kan jag starta liknande i min stad? - Ja! Antingen om du hör av dig till mig så kan vi se ifall jag kan integrera din stad i nuvarande projekt, alt. kan du ta ner projektet från GitHub (Se information), detta kräver förkunskap i Node js, Socket.io och javascript.</p>
+			<p>Jag hittar inte Pokéstoppet!? - Troligen har den inte registrerats på www.PokemonGoMap.info. Kontakta mig via Facebook där jag är med i alla större grupperna så lägger jag mer än gärna till Pokéstoppet i listan.</p>
 	</div>
 	<div id="information" style="display: none">
 		<h3>Vad är detta?</h3>
-		<p>Detta är ett projekt som bygger på communityt som spelar Pokémon Go. För att detta ska fungera, kräver det att alla användare engagerar sig och registrerar vilka quest de får från Pokéstop. Tillsammans kan vi hjälpas åt att hitta de quest som vi personligen behöver och som genererar bäst belöningar!</p>
+			<p>Detta är ett projekt som bygger på communityt som spelar Pokémon Go. För att detta ska fungera, kräver det att alla användare engagerar sig och registrerar vilka quest de får från Pokéstop. Tillsammans kan vi hjälpas åt att hitta de quest som vi personligen behöver och som genererar bäst belöningar!</p>
 		<h3>Under huven</h3>
-		<p>Denna sida bygger inte på något "Spoofande" och använder sig enbart av inskickad användar information.</p>
-		<p>Pokéstopnamn och lokalisation är tagna från <a href="https://www.pokemongomap.info">pokemongomap.info</a> som är en sida där personer kan registrera Gym och Stop.</p>
+			<p>Denna sida bygger inte på något "Spoofande" och använder sig enbart av inskickad användar information.</p>
+			<p>Pokéstopnamn och lokalisation är tagna från <a href="https://www.pokemongomap.info">pokemongomap.info</a> som är en sida där personer kan registrera Gym och Stop.</p>
+			<p>Sidan bygger på npm, Node js och "Socket.io". Det innebär att allt är styrt av webb kod. Tekniken "Socket.io" används mycket i meddelande applikationer, vilket innebär att läggs information till av en användare, läggs det automatiskt till på alla andra användare som har sidan öppen, detta gör att användare inte behöver uppdatera sidan för att få senaste informationen.</p>
 		<h3>Bra att veta</h3>
-		<p>Databasen innehåller i nuläget ca 400 st Pokéstop, risken finns att just det pokestop du ska registrera inte hittas. Antingen är den inte tillaggd på <a href="https://www.pokemongomap.info">pokemongomap.info</a> eller så har jag missat den. Hittar du ett Pokéstop som fattas kan du nå mig via de större Pokémon Go grupperna på Facebook (Mattias Lidbeck).</p>
-		<p>Sidan är öppen för vem som helst att lägga till Quester, vilket även öppnar upp risken för att någon skulle få för sig att "Trolla" eller på annat sätt förstöra upplevelsen för oss andra, dock är det ett aktivt val i projektet att inte implementera inloggning eller liknande. Vi får se ifall detta kommer att bli ett framtida problem.</p>
+			<p>Databasen innehåller i nuläget ca 400 st Pokéstop, risken finns att just det pokestop du ska registrera inte hittas. Antingen är den inte tillaggd på <a href="https://www.pokemongomap.info">pokemongomap.info</a> eller så har jag missat den. Hittar du ett Pokéstop som fattas kan du nå mig via de större Pokémon Go grupperna på Facebook (Mattias Lidbeck).</p>
+			<p>Sidan är öppen för vem som helst att lägga till Quester, vilket även öppnar upp risken för att någon skulle få för sig att "Trolla" eller på annat sätt förstöra upplevelsen för oss andra, dock är det ett aktivt val i projektet att inte implementera inloggning eller liknande. Vi får se ifall detta kommer att bli ett framtida problem.</p>
+		<h3>GPS</h3>
+			<p>För att du som användare ska få bästa möjliga upplevelsen behöver du godkänna att sidan hämtar din GPS från telefonen. OBS! Din GPS information stannar på din enhet, inget som sidan skickar vidare till server eller andra platser.</p>
 		<h3>Mål i projektet</h3>
-		<p>Det ska vara så enkellt som möjligt att göra registreringar.</p>
-		<p>Projektet ska jobba för öppen data och så småning om kommer data erbjudas i så många format det går (js, json, jsonp, lines m.m.), så att externa utvecklare ska kunna använda sig av informationen.</p>
+			<p>Det ska vara så enkellt som möjligt att göra registreringar.</p>
+			<p>Projektet ska jobba för öppen data och så småning om kommer data erbjudas i så många format det går (js, json, jsonp, lines m.m.), så att externa utvecklare ska kunna använda sig av informationen.</p>
+			<p>Denna hemsida och projekt kommer förbli utan reklam, all kod kan hittas på GitHub (<a href="https://github.com/teddykladdkak/quest-notifier-pogo">https://github.com/teddykladdkak/quest-notifier-pogo</a>) och är fri att använda av vem som helst. OBS projektet är fortfarande ostabilt pga det är så nytt, viktigt att upptadera kod i produktion kontinuerligt då jag nästan dagligen gör förändringar.</p>
 	</div>
 	<div id="setting" style="display: none;"></div>
 	<div id="add" style="display: none;">

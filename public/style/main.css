@@ -140,7 +140,7 @@ h1 {
 #pokestopnamn {
 	padding-left: 30px;
 }
-.fa-crosshairs {
+#add .fa-crosshairs {
 	position: absolute;
     z-index: 9;
     left: 5px;
