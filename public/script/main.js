@@ -172,7 +172,7 @@ function additems(){
 	};
 };
 function markquestgroup(element){
-	var typquest = hittaid('typquest').getElementsByTagName('span');
+	var typquest = hittaid('typquest').getElementsByClassName('questgroup');
 	for (var i = typquest.length - 1; i >= 0; i--) {
 		typquest[i].removeAttribute('style');
 	};
@@ -254,13 +254,18 @@ function angra(){
 		alltd[i].removeAttribute('class');
 	};
 	removechilds(hittaid('alternativ'));
-	hittaid('quests').selectedIndex = 0;
 	activate('deaktivera', 'quests');
 	hittaid('pokestopnamn').value = '';
 	hittaid('num').value = '';
 	activate('deaktivera', 'num');
 	activate('deaktivera', 'regbutton');
+	hittaid('quests').selectedIndex = 0;
 	hittaid('wrapper').removeAttribute('style');
+	var allquest = hittaid('typquest').getElementsByClassName('questgroup');
+	for (var i = allquest.length - 1; i >= 0; i--) {
+		allquest[i].removeAttribute('style');
+	};
+	addquest('Alla');
 };
 function registrera(){
 	var pokestopval = hittaid('pokestopnamn').value;
@@ -418,6 +423,19 @@ function getLocation() {
 	} else {
 		console.log('Kunde inte få tag på användarens plats.');
 	};
+};
+function updateFindPokestopLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(afterposfindpokestop);
+	} else {
+		console.log('Kunde inte få tag på användarens plats.');
+	};
+};
+function afterposfindpokestop(position) {
+	console.log('Location uppdaterad.')
+	window['lat'] = position.coords.latitude;
+	window['lon'] = position.coords.longitude;
+	closeststop(hittaid('closeststop'));
 };
 function showPosition(position) {
 	window['lat'] = position.coords.latitude;
