@@ -417,6 +417,7 @@ function sortbykm(){
 
 var lon = '0';
 var lat = '0';
+setInterval(getLocation, 60000);
 function getLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition);
