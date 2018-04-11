@@ -149,3 +149,12 @@ h1 {
 	display: none;
 	cursor: pointer;
 }
+#typquest {
+	text-align: center;
+}
+#typquest .questgroup {
+	display: inline-block;
+	padding: 6px;
+	margin: 3px;
+	background-color: lightgray;
+}

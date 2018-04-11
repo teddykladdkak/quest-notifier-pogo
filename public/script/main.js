@@ -160,16 +160,50 @@ function additems(){
 	var questwrapper = hittaid('quests');
 		questwrapper.setAttribute('onchange', 'addnumber(this);')
 		startoption('Välj quest');
-	for (var i = 0; i < quests.length; i++){
+		addquest('Alla')
+	var typquest = hittaid('typquest');
+	for (var i = 0; i < questgroups.length; i++){
+		var label = document.createElement('div');
+			label.setAttribute('onclick', 'markquestgroup(this);addquest("' + questgroups[i] + '")');
+			label.setAttribute('class', 'questgroup');
+			var labeltext = document.createTextNode(questgroups[i]);
+			label.appendChild(labeltext);
+		typquest.appendChild(label);
+	};
+};
+function markquestgroup(element){
+	var typquest = hittaid('typquest').getElementsByTagName('span');
+	for (var i = typquest.length - 1; i >= 0; i--) {
+		typquest[i].removeAttribute('style');
+	};
+	element.setAttribute('style', 'background-color: #000; color: #FFF;');
+}
+function addquest(group){
+	var questwrapper = hittaid('quests');
+	var questtoprint = [];
+	if(group == 'Alla'){
+		for (var i = 0; i < quests.length; i++){
+			questtoprint.push({"data": quests[i], "index": i});
+		};
+	}else{
+		for (var i = 0; i < quests.length; i++){
+			if(quests[i].group == group){
+				questtoprint.push({"data": quests[i], "index": i});
+			};
+		};
+	};
+	removechilds(questwrapper);
+	startoption('Välj quest');
+	for (var i = 0; i < questtoprint.length; i++){
 		var option = document.createElement('option');
-			option.setAttribute('value', quests[i].namn);
-			option.setAttribute('data-number', quests[i].number);
-			option.setAttribute('data-index', i);
-			var optiontext = document.createTextNode(quests[i].namn);
+			option.setAttribute('value', questtoprint[i].data.namn);
+			option.setAttribute('data-number', questtoprint[i].data.number);
+			option.setAttribute('data-index', questtoprint[i].index);
+			var optiontext = document.createTextNode(questtoprint[i].data.namn);
 			option.appendChild(optiontext);
 		questwrapper.appendChild(option);
 	};
-};
+}
 function addnumber(element){
 	activate('deaktivera', 'regbutton');
 	activate('deaktivera', 'num');
@@ -301,8 +335,12 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 			var imgwrp = document.createElement('div');
 				imgwrp.setAttribute('class', 'td');
 				var img = document.createElement('img');
-					img.setAttribute('src', itemplats);
-				imgwrp.appendChild(img);
+				if(itemnamn == 'pokemon'){
+					findsecretpkm(questvalue, itemplats, imgwrp);
+				}else{
+						img.setAttribute('src', itemplats);
+					imgwrp.appendChild(img);
+				};
 			tr.appendChild(imgwrp);
 			var task = document.createElement('div');
 				task.setAttribute('class', 'td');
@@ -321,6 +359,27 @@ function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, gi
 				task.appendChild(taskp);
 			tr.appendChild(task);
 		wrapper.appendChild(tr);
+};
+function findsecretpkm(quest, itemplats, wrapper) {
+	var svar = itemplats;
+	var items = 0;
+	for (var i = 0; i < secretpokm.length; i++){
+		if(secretpokm[i].sok == quest){
+			for (var a = 0; a < secretpokm[i].pkm.length; a++){
+				var img = document.createElement('img');
+					img.setAttribute('src', 'https://www.gymlund.tk/img/pokemon/bilder/' + secretpokm[i].pkm[a] + '.png');
+					img.setAttribute('style', 'max-width: 30px;');
+				wrapper.appendChild(img);
+				items++;
+			};
+		};
+	};
+	if(items == 0){
+		var img = document.createElement('img');
+			img.setAttribute('src', itemplats);
+		wrapper.appendChild(img);
+	};
+	return svar;
 };
 function pad (str, max) {
 	str = str.toString();
