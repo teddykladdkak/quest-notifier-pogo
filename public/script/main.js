@@ -17,7 +17,7 @@ function changetext(element){
 	localStorage.setItem('settingtext', element.value);
 	var wrapper = hittaid('textsettings');
 		removechilds(wrapper);
-		var code = document.createTextNode('body { font-size: ' + range[element.value] + 'px!important; }');
+		var code = document.createTextNode('#questions, #information, #setting, #wrapper { font-size: ' + range[element.value] + 'px!important; }');
 		wrapper.appendChild(code);
 };
 function changeikon(element){
