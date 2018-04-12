@@ -442,6 +442,7 @@ var pokestop = [ //Source: https://www.pokemongomap.info/
 	{"namn": "Badflickan", "latitude": 55.507739, "longitude": 13.24180899999999},
 	{"namn": "Hjulrullaren", "latitude": 55.50747799999999, "longitude": 13.233747999999991},
 	{"namn": "Svedala Trainstation", "latitude": 55.50706499999999, "longitude": 13.232258999999999},
-	{"namn": "Aggarps Mölla", "latitude": 55.493584, "longitude": 13.2386500}
+	{"namn": "Aggarps Mölla", "latitude": 55.493584, "longitude": 13.2386500},
+	{"namn": "Gränsgatans lekplats", "latitude": 55.506724, "longitude": 13.2516270}
 	/*{"namn": "", "latitude": , "longitude": },*/
 ];
