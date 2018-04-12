@@ -14,8 +14,7 @@ function getDate(dateannan, timeannan, milisecsave){
 var config = {
 	"public": __dirname + '/public',
 	"savedata": __dirname + '/savedata.json',
-	"port": 4455,
-	"chechdaymin": 20
+	"port": 4455
 };
 
 
@@ -102,10 +101,9 @@ checkifsavefileexist();
 
 
 
-setInterval(dayloop, ((config.chechdaymin * 1000) * 60));
+setInterval(dayloop, (1000 * 60));
 function dayloop() {
-	var savedata = JSON.parse(fs.readFileSync(config.savedata, 'utf8'));
-	if(getDate().datum == savedata.datum){}else{
+	if(getDate().tid == '00:00'){
 		skrivtillspara('tom');
 		console.log('Ny dag = tom fil :S');
 	};

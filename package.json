@@ -1,0 +1,32 @@
+{
+  "name": "pogo-quest",
+  "version": "1.0.0",
+  "description": "Listar användares registreringar var quests kan hittas i Lund (med omnejd) och Staffanstorp.",
+  "main": "index.js",
+  "dependencies": {
+    "basic-auth": "^1.1.0",
+    "express": "^4.15.2",
+    "make-dir": "^1.1.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teddykladdkak/quest-notifier-pogo.git"
+  },
+  "keywords": [
+    "Pokemon",
+    "Go",
+    "PoGo",
+    "Quest"
+  ],
+  "author": "Mattias Lidbeck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teddykladdkak/quest-notifier-pogo/issues"
+  },
+  "homepage": "https://github.com/teddykladdkak/quest-notifier-pogo#readme"
+}
