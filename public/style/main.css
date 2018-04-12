@@ -72,7 +72,7 @@ button {
 	top: 0px;
 	left: 0px;
 	width: 100%;
-    font-size: 1.5em;
+    font-size: 40px;
     padding: 0px;
     background-color: #000;
     color: #000;
@@ -99,7 +99,7 @@ button {
 	#meny.menyleft .fa-plus-circle {color: black;}
 h1 {
 	font-family: verdana;
-	font-size: 1.5em;
+	font-size: 35px;
 	text-align: center;
 	margin-top: 0px;
 	padding-top: 0px;
@@ -138,9 +138,10 @@ h1 {
 	position: relative;
 }
 #pokestopnamn {
-	padding-left: 30px;
+	padding-left: 35px;
 }
-#add .fa-crosshairs {
+#add #closeststop {
+	font-size: 30px;
 	position: absolute;
     z-index: 9;
     left: 5px;
@@ -157,4 +158,33 @@ h1 {
 	padding: 6px;
 	margin: 3px;
 	background-color: lightgray;
+}
+.prettyrange {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.prettyrange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.prettyrange::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
 }

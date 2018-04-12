@@ -27,6 +27,8 @@
 	<link rel="stylesheet" href="style/font-awesome/css/fontawesome-all.css">
 	<link rel="stylesheet" type="text/css" href="style/main.css">
 	<style type="text/css" id="stylesettings">/*Code for style*/</style>
+	<style type="text/css" id="textsettings">/*Code for style*/</style>
+	<style type="text/css" id="ikonsettings">/*Code for style*/</style>
 </head>
 <body onload="load();">
 	<div id="error" style="display: none;">
@@ -77,7 +79,14 @@
 			<p>Projektet ska jobba för öppen data och så småning om kommer data erbjudas i så många format det går (js, json, jsonp, lines m.m.), så att externa utvecklare ska kunna använda sig av informationen.</p>
 			<p>Denna hemsida och projekt kommer förbli utan reklam, all kod kan hittas på GitHub (<a href="https://github.com/teddykladdkak/quest-notifier-pogo">https://github.com/teddykladdkak/quest-notifier-pogo</a>) och är fri att använda av vem som helst. OBS projektet är fortfarande ostabilt pga det är så nytt, viktigt att upptadera kod i produktion kontinuerligt då jag nästan dagligen gör förändringar.</p>
 	</div>
-	<div id="setting" style="display: none;"></div>
+	<div id="setting" style="display: none;">
+		<h3>Text Storlek</h3>
+		<input type="range" min="0" max="6" value="3" id="textstorlek" class="prettyrange" onchange="changetext(this);">
+		<h3>Ikon Storlek</h3>
+		<input type="range" min="0" max="6" value="3" id="ikonstorlek" class="prettyrange" onchange="changeikon(this);">
+		<h3>Visa/Dölj Items</h3>
+		<div id="itemsettings"></div>
+	</div>
 	<div id="add" style="display: none;">
 		<p>1. Välj Pokéstop</p>
 		<div id="wrapperpokestopnamn">

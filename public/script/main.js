@@ -12,8 +12,34 @@ function removechilds(parent){
 		};
 	};
 };
+function changetext(element){
+	var range = [10, 15, 20, 25, 30, 35, 40];
+	localStorage.setItem('settingtext', element.value);
+	var wrapper = hittaid('textsettings');
+		removechilds(wrapper);
+		var code = document.createTextNode('body { font-size: ' + range[element.value] + 'px!important; }');
+		wrapper.appendChild(code);
+};
+function changeikon(element){
+	var range = [45, 50, 55, 60, 65, 70, 75];
+	localStorage.setItem('settingikon', element.value);
+	var wrapper = hittaid('ikonsettings');
+		removechilds(wrapper);
+		var code = document.createTextNode('#wrapper .tr .td img { max-width: ' + range[element.value] + 'px!important; }');
+		wrapper.appendChild(code);
+};
 function addsettings(){
-	var wrapper = hittaid('setting');
+	if(!localStorage.getItem('settingtext')){}else{
+		var textsetting = {"value": localStorage.getItem('settingtext')}
+		changetext(textsetting);
+		hittaid('textstorlek').value = localStorage.getItem('settingtext');
+	};
+	if(!localStorage.getItem('settingikon')){}else{
+		var ikonsetting = {"value": localStorage.getItem('settingikon')}
+		changeikon(ikonsetting);
+		hittaid('ikonstorlek').value = localStorage.getItem('settingikon');
+	};
+	var wrapper = hittaid('itemsettings');
 	for (var i = rewards.length - 1; i >= 0; i--) {
 		var p = document.createElement('p');
 			var icon = document.createElement('i');
