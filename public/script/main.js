@@ -264,7 +264,7 @@ function checknum(element) {
 	};
 };
 function hideall(id){
-	var wrappers = ['setting', 'add', 'wrapper', 'information', 'questions'];
+	var wrappers = ['setting', 'add', 'wrapper', 'information', 'questions', 'mapid'];
 	for (var i = wrappers.length - 1; i >= 0; i--) {
 		hittaid(wrappers[i]).setAttribute('style', 'display: none;');
 	}
@@ -540,3 +540,41 @@ socket.on('data', function(data) {
 	};
 	sortbykm();
 });
+function addmap(){
+	hideall('mapid');
+	var mapidelem = hittaid('mapid');
+	if(mapidelem.getAttribute('data-loaded') == 'no'){
+		mapidelem.setAttribute('data-loaded', 'yes');
+		var icon = L.Icon.extend({
+		    options: {
+		        shadowUrl: '',
+		        iconSize:     [40, 40],
+		        shadowSize:   [0, 0],
+		        iconAnchor:   [20, 39],
+		        shadowAnchor: [0, 0],
+		        popupAnchor:  [0, -40]
+		    }
+		});
+		var iconelem = {};for (var i = rewards.length - 1; i >= 0; i--) {iconelem[rewards[i].namn] = new icon({iconUrl: rewards[i].plats});};
+		if(lat == 0){var coordinates = [55.7068782,13.1901836];}else{var coordinates = [lat,lon];};
+		var mymap = L.map('mapid').setView(coordinates, 13);
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			    maxZoom: 18,
+			    id: 'mapbox.streets',
+			    accessToken: 'pk.eyJ1IjoidGVkZHlrbGFkZGthayIsImEiOiJjamdhbHZobXYwM2ptMnBsemVua2pwYjNyIn0.T17N6gTdg1orob1oNejuTw'
+			}).addTo(mymap);
+		var alllines = hittaid('wrapper').getElementsByClassName('tr');
+		for (var i = alllines.length - 1; i >= 0; i--) {
+			var longitude = alllines[i].getAttribute('data-longitude');
+			var latitude = alllines[i].getAttribute('data-latitude');
+			var namn = alllines[i].getAttribute('data-namn');
+			var item = alllines[i].getAttribute('data-itemnamn');
+			var quest = alllines[i].getAttribute('data-questvalue');
+			console.log(longitude + ' - ' + latitude + ' - ' + namn + ' - ' + item + ' - ' + quest)
+			L.marker([latitude,longitude], {icon: iconelem[item]}).addTo(mymap).bindPopup(namn + ': ' + quest);
+		};
+	}else{
+		mapidelem.setAttribute('style', 'position: relative;');
+	};
+};
