@@ -543,6 +543,15 @@ socket.on('data', function(data) {
 function addmap(){
 	hideall('mapid');
 	var mapidelem = hittaid('mapid');
+	if(mapidelem.getAttribute('data-loaded') == 'no'){}else{
+		var mapidwrapper = hittaid('mapidwrapper');
+			mapidelem.remove();
+			var nymapid = document.createElement('div');
+				nymapid.setAttribute('id', 'mapid');
+				nymapid.setAttribute('data-loaded', 'no');
+			mapidwrapper.appendChild(nymapid);
+			var mapidelem = hittaid('mapid');
+	};
 	if(mapidelem.getAttribute('data-loaded') == 'no'){
 		mapidelem.setAttribute('data-loaded', 'yes');
 		var icon = L.Icon.extend({
@@ -555,6 +564,15 @@ function addmap(){
 		        popupAnchor:  [0, -40]
 		    }
 		});
+		var inactive = L.icon({
+		    iconUrl: 'img/inactive.png',
+		    shadowUrl: '',
+	        iconSize:     [12, 12],
+	        shadowSize:   [0, 0],
+	        iconAnchor:   [6, 11],
+	        shadowAnchor: [0, 0],
+	        popupAnchor:  [0, -12]
+		});
 		var iconelem = {};for (var i = rewards.length - 1; i >= 0; i--) {iconelem[rewards[i].namn] = new icon({iconUrl: rewards[i].plats});};
 		if(lat == 0){var coordinates = [55.7068782,13.1901836];}else{var coordinates = [lat,lon];};
 		var mymap = L.map('mapid').setView(coordinates, 13);
@@ -565,14 +583,27 @@ function addmap(){
 			    accessToken: 'pk.eyJ1IjoidGVkZHlrbGFkZGthayIsImEiOiJjamdhbHZobXYwM2ptMnBsemVua2pwYjNyIn0.T17N6gTdg1orob1oNejuTw'
 			}).addTo(mymap);
 		var alllines = hittaid('wrapper').getElementsByClassName('tr');
+		var registerd = [];
 		for (var i = alllines.length - 1; i >= 0; i--) {
 			var longitude = alllines[i].getAttribute('data-longitude');
 			var latitude = alllines[i].getAttribute('data-latitude');
 			var namn = alllines[i].getAttribute('data-namn');
+			registerd.push(namn);
 			var item = alllines[i].getAttribute('data-itemnamn');
 			var quest = alllines[i].getAttribute('data-questvalue');
 			console.log(longitude + ' - ' + latitude + ' - ' + namn + ' - ' + item + ' - ' + quest)
 			L.marker([latitude,longitude], {icon: iconelem[item]}).addTo(mymap).bindPopup(namn + ': ' + quest);
+		};
+		for (var i = pokestop.length - 1; i >= 0; i--) {
+			var todo = true;
+			for (var a = registerd.length - 1; a >= 0; a--) {
+				if(registerd[a] == pokestop[i].namn){
+					var todo = false;
+				};
+			};
+			if(todo){
+				L.marker([pokestop[i].latitude, pokestop[i].longitude], {icon: inactive}).addTo(mymap);
+			};
 		};
 	}else{
 		mapidelem.setAttribute('style', 'position: relative;');
