@@ -337,6 +337,8 @@ function getpokestopobjekt(pokestopnamn){
 };
 function addexample(pokestopobj, itemnamn, itemplats, questvalue, questantal, givenkm){
 	var wrapper = hittaid('wrapper');
+		var emptytext = wrapper.getElementsByClassName('center');
+		if(emptytext.length == 0){}else{removechilds(emptytext[0])};
 		var tr = document.createElement('div');
 			tr.setAttribute('class', 'tr setting' + itemnamn);
 			tr.setAttribute('data-namn', pokestopobj.namn);
@@ -434,7 +436,9 @@ function sortbykm(){
 				};
 			};
 		};
-		removechilds(hittaid('wrapper'));
+		if(nyordning.length == 0){}else{
+			removechilds(hittaid('wrapper'));
+		};
 		for (var i = nyordning.length - 1; i >= 0; i--) {
 			addexample({"namn": nyordning[i].namn, "latitude": nyordning[i].latitude, "longitude": nyordning[i].longitude}, nyordning[i].itemnamn, nyordning[i].itemplats, nyordning[i].questvalue, 0, nyordning[i].km);
 		};
@@ -532,8 +536,8 @@ socket.on('disconnect', function () {
 socket.on('data', function(data) {
 	hittaid('error').setAttribute('style', 'display: none;');
 	var wrapper = hittaid('wrapper');
-	removechilds(wrapper);
 	if(data.length == 0){}else{
+		removechilds(wrapper);
 		for (var i = data.length - 1; i >= 0; i--) {
 			readsave(data[i]);
 		};
