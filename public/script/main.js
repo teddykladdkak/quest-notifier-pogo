@@ -436,8 +436,14 @@ function sortbykm(){
 				};
 			};
 		};
-		if(nyordning.length == 0){}else{
-			removechilds(hittaid('wrapper'));
+		var wrapper = hittaid('wrapper');
+		removechilds(wrapper);
+		if(nyordning.length == 0){
+			var p = document.createElement('p');
+				p.setAttribute('class', 'center');
+				var ptext = document.createTextNode('Det verkar inte finnas några Quests registrerade. Blir du den första?');
+				p.appendChild(ptext);
+			wrapper.appendChild(p);
 		};
 		for (var i = nyordning.length - 1; i >= 0; i--) {
 			addexample({"namn": nyordning[i].namn, "latitude": nyordning[i].latitude, "longitude": nyordning[i].longitude}, nyordning[i].itemnamn, nyordning[i].itemplats, nyordning[i].questvalue, 0, nyordning[i].km);
@@ -536,8 +542,14 @@ socket.on('disconnect', function () {
 socket.on('data', function(data) {
 	hittaid('error').setAttribute('style', 'display: none;');
 	var wrapper = hittaid('wrapper');
-	if(data.length == 0){}else{
-		removechilds(wrapper);
+	removechilds(wrapper);
+	if(data.length == 0){
+		var p = document.createElement('p');
+			p.setAttribute('class', 'center');
+			var ptext = document.createTextNode('Det verkar inte finnas några Quests registrerade. Blir du den första?');
+			p.appendChild(ptext);
+		wrapper.appendChild(p);
+	}else{
 		for (var i = data.length - 1; i >= 0; i--) {
 			readsave(data[i]);
 		};
