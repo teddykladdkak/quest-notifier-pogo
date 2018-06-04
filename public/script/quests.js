@@ -1,4 +1,5 @@
 //Source: https://pokemongohub.net/post/guide/field-research-missions-list/
+// Source: https://pokemongo.gamepress.gg/research-tasks-list
 
 var rewards = [
 	{namn: "stardust", rubrik: "Stardust", plats: "img/stuff/stardust.png"},
@@ -18,8 +19,9 @@ var rewards = [
 	{namn: "potion_max", rubrik: "Max Potion", plats: "img/stuff/potion_max.png"},
 	{namn: "pokemon", rubrik: "Pokémon", plats: "img/stuff/pokemon.png"}
 ];
-var questgroups = ["Catch", "Evolve", "Hatch", "Walking", "Throws", "Spin", "Power-Up", "Gym/Raid", "Level/Achievements"]
-var quests = [
+//var questgroups = ["Catch", "Evolve", "Hatch", "Walking", "Throws", "Spin", "Power-Up", "Gym/Raid", "Level/Achievements"]
+var questgroups = ["Adventure Week", "Catch", "Evolve", "Hatch", "Walking", "Throws", "Spin", "Power up", "Gym", "Raid", "Berries"];
+/*var quests = [
 	{"group": "Catch", "namn": "Use {?} Berries to help catch Pokémon.", "number": true},
 	{"group": "Catch", "namn": "Use a Berry to help catch a Pokémon.", "number": false},
 	{"group": "Catch", "namn": "Catch {?} Pokémon.", "number": true},
@@ -119,8 +121,272 @@ var quests = [
 	{"group": "Level/Achievements", "namn": "Reach level {?}.", "number": true},
 	{"group": "Level/Achievements", "namn": "Earn a silver Kanto medal.", "number": false},
 	{"group": "Level/Achievements", "namn": "Earn a gold Kanto medal.", "number": false}
-];
+];*/
+var quests = [{
+	"group": "Adventure Week",
+	"namn": "Adventure Week: Earn 3 Candy walking with your Buddy.",
+	"number": "false"
+	//"Pokemon encounter(Kabuto / Omanyte)"
+},{
+	"group": "Adventure Week",
+	"namn": "Adventure Week: Evolve a Kabuto or Omanyte.",
+	"number": "false"
+	//"Pokemon encounter(Aerodactyl)"
+},{
+	"group": "Adventure Week",
+	"namn": "Adventure Week: Hatch 2 Eggs.",
+	"number": "false"
+	//"1 Rare Candy"
+},{
+	"group": "Adventure Week",
+	"namn": "Adventure Week: Hatch 2 Eggs.",
+	"number": "false"
+	//"Pokemon encounter(Omanyte)"
+},{
+	"group": "Gym",
+	"namn": "Battle in a Gym 3 times.",
+	"number": "false"
+	//"Pokemon encounter(Jynx)"
+},{
+	"group": "Gym",
+	"namn": "Battle in a Gym 5 times.",
+	"number": "false"
+	//"1000 Stardust / 5 Potions / 3 Super Potions / (2 / 4) Revives / 10 Nanab Berries / Pokemon encounter(Machop / Bulbasaur)"
+},{
+	"group": "Gym",
+	"namn": "Battle in a Gym.",
+	"number": "false"
+	//"400 Stardust / 5 Potions / 2 Revives 5 Nanab Berries / Pokemon encounter(Horsea)"
+},{
+	"group": "Raid",
+	"namn": "Battle in a raid.",
+	"number": "false"
+	//"5 Potions"
+},{
+	"group": "Catch",
+	"namn": "Catch 10 Pokemon with Weather Boost.",
+	"number": "false"
+	//"1000 Stardust"
+},{
+	"group": "Catch",
+	"namn": "Catch 10 Pokemon.",
+	"number": "false"
+	//"400 Stardust / 5 Poke Balls / 3 Razz Berries / 1 Pinap Berry / Pokemon encounter(Magikarp / Exeggutor)"
+},{
+	"group": "Catch",
+	"namn": "Catch 3 Bug-type Pokémon",
+	"number": "false"
+	//"Pokemon encounter(Pinsir)"
+},{
+	"group": "Catch",
+	"namn": "Catch 3 Dragon-type Pokémon.",
+	"number": "false"
+	//"3 Rare Candies"
+},{
+	"group": "Catch",
+	"namn": "Catch 3 Electric, Water, or Bug-type Pokemon.",
+	"number": "false"
+	//"Pokemon encounter(Electrike)"
+},{
+	"group": "Catch",
+	"namn": "Catch 3 Swablu",
+	"number": "false"
+	//"1000 Stardust / 2 Pinap Berries / 4-6 Razz Berries / 5 Great Balls"
+},{
+	"group": "Catch",
+	"namn": "Catch 5 Pokemon with Weather Boost.",
+	"number": "false"
+	//"400 Stardust / 1 Pinap Berry / Pokemon encounter(Vulpix)"
+},{
+	"group": "Catch",
+	"namn": "Catch a Ditto.",
+	"number": "false"
+	//"4000 Stardust / 3 Rare Candies / 10 Ultra Balls"
+},{
+	"group": "Catch",
+	"namn": "Catch a Dragon-type Pokemon.",
+	"number": "false"
+	//"10 Ultra Balls / 2 Golden Razz Berries / (1 / 3) Rare Candy / 3000 Stardust / Pokemon encounter(Dratini)"
+},{
+	"group": "Walking",
+	"namn": "Earn a Candy walking with your buddy.",
+	"number": "false"
+	//"Pokemon encounter(Krabby)"
+},{
+	"group": "Evolve",
+	"namn": "Evolve a Pokemon.",
+	"number": "false"
+	//"Pokemon encounter(Eevee)"
+},{
+	"group": "Evolve",
+	"namn": "Evolve a Water-type Pokemon.",
+	"number": "false"
+	//"Pokemon encounter(Seel)"
+},{
+	"group": "Hatch",
+	"namn": "Hatch 5 Eggs.",
+	"number": "false"
+	//"Pokemon encounter(Chansey)"
+},{
+	"group": "Hatch",
+	"namn": "Hatch an Egg.",
+	"number": "false"
+	//"400 Stardust / 3 Razz Berry / 5 Poke Balls / Pokemon encounter(Exeggcute)"
+},{
+	"group": "Throws",
+	"namn": "Make 2 Nice Curveball throws in a row.",
+	"number": "false"
+	//"400 Stardust / 5 Poke Balls / 1 Pinap Berry / 3 Razz Berries"
+},{
+	"group": "Throws",
+	"namn": "Make 2 Nice throws in a row.",
+	"number": "false"
+	//"1000 Stardust / 3 Nanab Berries"
+},{
+	"group": "Throws",
+	"namn": "Make 3 Curveball throws in a row.",
+	"number": "false"
+	//"Pokemon encounter(Golduck)"
+},{
+	"group": "Throws",
+	"namn": "Make 3 Excellent throws in a row.",
+	"number": "false"
+	//"Pokemon encounter(Larvitar)"
+},{
+	"group": "Throws",
+	"namn": "Make 3 Excellent throws.",
+	"number": "false"
+	//"Pokemon encounter(Larvitar)"
+},{
+	"group": "Throws",
+	"namn": "Make 3 Great Curveball throws in a row.",
+	"number": "false"
+	//"Pokemon encounter(Onix)"
+},{
+	"group": "Throws",
+	"namn": "Make 3 Great throws in a row.",
+	"number": "false"
+	//"(5 / 10) Ultra Balls / 1 Rare Candy / Pokemon encounter(Onix)"
+},{
+	"group": "Throws",
+	"namn": "Make 3 Great throws.",
+	"number": "false"
+	//"400 Stardust / 1 Pinap Berry / 3 Razz Berries / 5 Poke Balls / Pokemon encounter(Gastly / Onix)"
+},{
+	"group": "Throws",
+	"namn": "Make 5 Curveball throws in a row.",
+	"number": "false"
+	//"(1 / 2) Pinap Berries / 6 Nanab Berries / 5 Great Balls"
+},{
+	"group": "Throws",
+	"namn": "Make 5 Great throws.",
+	"number": "false"
+	//"5 Razz Berries"
+},{
+	"group": "Throws",
+	"namn": "Make 5 Nice throws.",
+	"number": "false"
+	//"5 Poke Balls / 3 Razz Berries / 1 Pinap Berry / 400 Stardust / Pokemon encounter(Voltorb)"
+},{
+	"group": "Throws",
+	"namn": "Make an Excellent Curveball throw.",
+	"number": "false"
+	//"Pokemon encounter(Absol)"
+},{
+	"group": "Throws",
+	"namn": "Make an Excellent throw.",
+	"number": "false"
+	//"1000 Stardust / 5 Great Balls / 2 Ultra Balls / 2 Pinap Berries"
+},{
+	"group": "Power up",
+	"namn": "Power up a Pokemon 3 times.",
+	"number": "false"
+	//"Pokemon encounter(Staryu)"
+},{
+	"group": "Power up",
+	"namn": "Power up a Pokemon 5 times.",
+	"number": "false"
+	//"Pokemon encounter(Bulbasaur / Charmander / Squirtle)"
+},{
+	"group": "Spin",
+	"namn": "Spin 6 PokeStops you haven't visited before.",
+	"number": "false"
+	//"Pokemon encounter(Aerodactyl)"
+},{
+	"group": "Berries",
+	"namn": "Use 5 Berries to help catch Pokemon.",
+	"number": "false"
+	//"1000 Stardust / 6 Razz Berries"
+},{
+	"group": "Gym",
+	"namn": "Use a Super Effective Charged attack in 5 Gym battles",
+	"number": "false"
+	//"1x Charged TM"
+},{
+	"group": "Gym",
+	"namn": "Use a Super Effective Charged attack in 7 Gym battles.",
+	"number": "false"
+	//"2000 Stardust / 6 Revives / 3 Super Potions / 1 Max Revive / 1 Rare Candy / Pokemon encounter(Electabuzz)"
+},{
+	"group": "Gym",
+	"namn": "Use a Super Effective Charged attack in a Gym battle.",
+	"number": "false"
+	//"4 Revives / 3 Super Potions"
+},{
+	"group": "Gym",
+	"namn": "Win 3 Gym battles.",
+	"number": "false"
+	//"3 Hyper Potions / 1 Max Revive / 1 Rare Candy / Pokemon encounter(Kingler)"
+},{
+	"group": "Gym",
+	"namn": "Win a Gym battle.",
+	"number": "false"
+	//"5 Potions / 4 Revives / Pokemon encounter(Bulbasaur / Charmander / Squirtle)"
+},{
+	"group": "Raid",
+	"namn": "Win a level 3 or higher raid.",
+	"number": "false"
+	//"1 Rare Candy"
+},{
+	"group": "Raid",
+	"namn": "Win a raid.",
+	"number": "false"
+	//"10 Nanab Berries / 3 Super Potions"
+}];
+
 var secretpokm = [
+	{"sok": "Adventure Week: Earn 3 Candy walking with your Buddy.", "pkm": [140, 138]},
+	{"sok": "Adventure Week: Evolve a Kabuto or Omanyte.", "pkm": [142]},
+	{"sok": "Adventure Week: Hatch 2 Eggs.", "pkm": [138]},
+	{"sok": "Battle in a Gym 3 times.", "pkm": [124]},
+	{"sok": "Battle in a Gym 5 times.", "pkm": [66, 1]},
+	{"sok": "Battle in a Gym.", "pkm": [116]},
+	{"sok": "Catch 10 Pokemon.", "pkm": [129, 103]},
+	{"sok": "Catch 3 Bug-type Pokémon", "pkm": [127]},
+	{"sok": "Catch 3 Electric, Water, or Bug-type Pokemon.", "pkm": [309]},
+	{"sok": "Catch 5 Pokemon with Weather Boost.", "pkm": [37]},
+	{"sok": "Catch a Dragon-type Pokemon.", "pkm": [147]},
+	{"sok": "Earn a Candy walking with your buddy.", "pkm": [98]},
+	{"sok": "Evolve a Pokemon.", "pkm": [133]},
+	{"sok": "Evolve a Water-type Pokemon.", "pkm": [86]},
+	{"sok": "Hatch 5 Eggs.", "pkm": [113]},
+	{"sok": "Hatch an Egg.", "pkm": [102]},
+	{"sok": "Make 3 Curveball throws in a row.", "pkm": [55]},
+	{"sok": "Make 3 Excellent throws in a row.", "pkm": [246]},
+	{"sok": "Make 3 Excellent throws.", "pkm": [246]},
+	{"sok": "Make 3 Great Curveball throws in a row.", "pkm": [95]},
+	{"sok": "Make 3 Great throws in a row.", "pkm": [95]},
+	{"sok": "Make 3 Great throws.", "pkm": [92, 95]},
+	{"sok": "Make 5 Nice throws.", "pkm": [100]},
+	{"sok": "Make an Excellent Curveball throw.", "pkm": [359]},
+	{"sok": "Power up a Pokemon 3 times.", "pkm": [120]},
+	{"sok": "Power up a Pokemon 5 times.", "pkm": [1, 4, 7]},
+	{"sok": "Spin 6 PokeStops you haven't visited before.", "pkm": [142]},
+	{"sok": "Use a Super Effective Charged attack in 7 Gym battles.", "pkm": [125]},
+	{"sok": "Win 3 Gym battles.", "pkm": [99]},
+	{"sok": "Win a Gym battle.", "pkm": [1, 4, 7]}
+];
+/*var secretpokm = [
 	{"sok": "Catch a Dragon-type Pokémon.", "pkm": [147]},
 	{"sok": "Catch 3 Oddish or Bellsprout.", "pkm": [114]},
 	{"sok": "Catch 3 Pidgey or Murkrow.", "pkm": [23]},
@@ -159,4 +425,4 @@ var secretpokm = [
 	{"sok": "Win 5 raids.", "pkm": [157]},
 	{"sok": "Use a supereffective Charged Attack in 7 Gym battles.", "pkm": [125]},
 	{"sok": "Spin 3 PokéStops you haven’t visited before.", "pkm": [77]}
-]
+]*/
