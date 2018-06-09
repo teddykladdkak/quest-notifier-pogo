@@ -1,6 +1,7 @@
 //Source: https://pokemongohub.net/post/guide/field-research-missions-list/
 // Source: https://pokemongo.gamepress.gg/research-tasks-list
-
+// Möjlig Source: https://www.reddit.com/r/TheSilphRoad/comments/8nv2cd/field_research_encounter_and_special_rewards/
+// Möjlig Source: https://www.youtube.com/watch?v=oNJ5A6KjrqU
 var rewards = [
 	{namn: "stardust", rubrik: "Stardust", plats: "img/stuff/stardust.png"},
 	{namn: "candy", rubrik: "Rare Candy", plats: "img/stuff/candy.png"},
@@ -184,6 +185,11 @@ var quests = [{
 	//"3 Rare Candies"
 },{
 	"group": "Catch",
+	"namn": "Catch 2 Water-type Pokémon.",
+	"number": "false"
+	//"Magicarp"
+},{
+	"group": "Catch",
 	"namn": "Catch 3 Electric, Water, or Bug-type Pokemon.",
 	"number": "false"
 	//"Pokemon encounter(Electrike)"
@@ -318,6 +324,11 @@ var quests = [{
 	"number": "false"
 	//"1000 Stardust / 6 Razz Berries"
 },{
+	"group": "Berries",
+	"namn": "Use 3 Berries to help catch Pokemon.",
+	"number": "false"
+	//"1000 Stardust / 6 Razz Berries"
+},{
 	"group": "Gym",
 	"namn": "Use a Super Effective Charged attack in 5 Gym battles",
 	"number": "false"
@@ -358,11 +369,12 @@ var secretpokm = [
 	{"sok": "Adventure Week: Earn 3 Candy walking with your Buddy.", "pkm": [140, 138]},
 	{"sok": "Adventure Week: Evolve a Kabuto or Omanyte.", "pkm": [142]},
 	{"sok": "Adventure Week: Hatch 2 Eggs.", "pkm": [138]},
-	{"sok": "Battle in a Gym 3 times.", "pkm": [124]},
+	{"sok": "Battle in a Gym 3 times.", "pkm": [90, 124]},
 	{"sok": "Battle in a Gym 5 times.", "pkm": [66, 1]},
 	{"sok": "Battle in a Gym.", "pkm": [116]},
 	{"sok": "Catch 10 Pokemon.", "pkm": [129, 103]},
 	{"sok": "Catch 3 Bug-type Pokémon", "pkm": [127]},
+	{"sok": "Catch 2 Water-type Pokémon.", "pkm": [129]},
 	{"sok": "Catch 3 Electric, Water, or Bug-type Pokemon.", "pkm": [309]},
 	{"sok": "Catch 5 Pokemon with Weather Boost.", "pkm": [37]},
 	{"sok": "Catch a Dragon-type Pokemon.", "pkm": [147]},
@@ -370,7 +382,7 @@ var secretpokm = [
 	{"sok": "Evolve a Pokemon.", "pkm": [133]},
 	{"sok": "Evolve a Water-type Pokemon.", "pkm": [86]},
 	{"sok": "Hatch 5 Eggs.", "pkm": [113]},
-	{"sok": "Hatch an Egg.", "pkm": [102]},
+	{"sok": "Hatch an Egg.", "pkm": [90, 102]},
 	{"sok": "Make 3 Curveball throws in a row.", "pkm": [55]},
 	{"sok": "Make 3 Excellent throws in a row.", "pkm": [246]},
 	{"sok": "Make 3 Excellent throws.", "pkm": [246]},
@@ -383,46 +395,7 @@ var secretpokm = [
 	{"sok": "Power up a Pokemon 5 times.", "pkm": [1, 4, 7]},
 	{"sok": "Spin 6 PokeStops you haven't visited before.", "pkm": [142]},
 	{"sok": "Use a Super Effective Charged attack in 7 Gym battles.", "pkm": [125]},
+	{"sok": "Use 3 Berries to help catch Pokemon.", "pkm": [320]},
 	{"sok": "Win 3 Gym battles.", "pkm": [99]},
 	{"sok": "Win a Gym battle.", "pkm": [1, 4, 7]}
 ];
-/*var secretpokm = [
-	{"sok": "Catch a Dragon-type Pokémon.", "pkm": [147]},
-	{"sok": "Catch 3 Oddish or Bellsprout.", "pkm": [114]},
-	{"sok": "Catch 3 Pidgey or Murkrow.", "pkm": [23]},
-	{"sok": "Catch 3 Treecko or Mudkip.", "pkm": [255]},
-	{"sok": "Catch 3 Meowth or Skitty.", "pkm": [58]},
-	{"sok": "Catch 3 Poison-type Pokémon.", "pkm": [1, 88, 92]},
-	{"sok": "Catch 3 Bug-type Pokémon.", "pkm": [127]},
-	{"sok": "Catch 3 Dark-type Pokémon.", "pkm": [228]},
-	{"sok": "Catch 3 Electric-type Pokémon.", "pkm": [25]},
-	{"sok": "Catch 3 Flying-type Pokémon.", "pkm": [84]},
-	{"sok": "Catch 3 Fire-type Pokémon.", "pkm": [77, 219]},
-	{"sok": "Catch 3 Grass-, Fire-, or Ground-type Pokémon.", "pkm": [322]},
-	{"sok": "Catch 5 Fire-type Pokémon.", "pkm": [136]},
-	{"sok": "Catch 5 Pokémon with Weather Boost.", "pkm": [37, 60]},
-	{"sok": "Catch 10 Pokémon.", "pkm": [100, 103, 129]},
-	{"sok": "Catch 10 Pokémon with Weather Boost.", "pkm": [60]},
-	{"sok": "Catch 20 Pokémon with Weather Boost.", "pkm": [38]},
-	{"sok": "Power up Pokémon 5 times.", "pkm": [1, 4, 7]},
-	{"sok": "Evolve a Pokémon.", "pkm": [37, 133]},
-	{"sok": "Evolve 5 Fire-type Pokémon.", "pkm": [136]},
-	{"sok": "Hatch an Egg.", "pkm": [102]},
-	{"sok": "Hatch 3 Eggs.", "pkm": [126]},
-	{"sok": "Hatch 5 Eggs.", "pkm": [113]},
-	{"sok": "Make 3 Nice Throws.", "pkm": [100]},
-	{"sok": "Make 5 Nice Throws.", "pkm": [100]},
-	{"sok": "Make 3 Great Throws.", "pkm": [92, 95]},
-	{"sok": "Make 3 Great Throws in a row.", "pkm": [95]},
-	{"sok": "Make 3 Great Curveball Throws.", "pkm": [5]},
-	{"sok": "Make 3 Excellent Throws.", "pkm": [246]},
-	{"sok": "Make 3 Excellent Throws in a row.", "pkm": [95, 246]},
-	{"sok": "Battle in a Gym.", "pkm": [1, 4, 7, 56, 60, 228, 322]},
-	{"sok": "Battle in a Gym 5 times.", "pkm": [1, 66]},
-	{"sok": "Win a Gym battle.", "pkm": [1, 4, 7]},
-	{"sok": "Win 3 Gym battles.", "pkm": [124]},
-	{"sok": "Win 2 raids.", "pkm": [156]},
-	{"sok": "Win 5 raids.", "pkm": [157]},
-	{"sok": "Use a supereffective Charged Attack in 7 Gym battles.", "pkm": [125]},
-	{"sok": "Spin 3 PokéStops you haven’t visited before.", "pkm": [77]}
-]*/
